@@ -4,6 +4,7 @@ import IconPower from '@icons/icon-subway_power.svg'
 import IconWater from '@icons/icon-ion_water.svg'
 import IconLeaf from '@icons/icon-leaf_solid.svg'
 import { Grid, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 export default function SolutionSection() {
     const inviewRef = useRef({} as HTMLDivElement);
@@ -61,7 +62,7 @@ export default function SolutionSection() {
                         </Typography>
                     </Grid>
                     <Grid item xs={12}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/service-01.jpg" alt="設備流程" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-01.jpg`} alt="設備流程" srcSet="" />
                     </Grid>
 
                     <Grid item xs={6}>
@@ -72,7 +73,7 @@ export default function SolutionSection() {
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/service-03.jpg" alt="廢棄物處理流程" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -88,7 +89,7 @@ export default function SolutionSection() {
                         </Typography>
                     </Grid>
                     <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/service-02.jpg" alt="去中心化" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-02.jpg`} alt="去中心化" srcSet="" />
                     </Grid>
                 </Grid>
             </Grid>
@@ -187,7 +188,7 @@ export default function SolutionSection() {
                     </Grid>
 
                     <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/service-05.jpg" alt="設備貨櫃化展示" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-05.jpg`} alt="設備貨櫃化展示" srcSet="" />
                     </Grid>
                     <Grid item xs={6} display='flex' alignItems='center'>
                         <Typography variant='subtitle2' color='common.black'>
@@ -224,7 +225,7 @@ export default function SolutionSection() {
                         </Typography>
                     </Grid>
                     <Grid item xs={5} ml='auto' zIndex={1}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/aurelia_device_A400.jpg" alt="Aurelia A400" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.jpg`} alt="Aurelia A400" srcSet="" />
                     </Grid>
                 </Grid>
             </Grid>

@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
 import { Box, Button, Grid, Link, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 interface INews {title: string, time: string, content: string, link: string, imgOrVideo: React.ReactElement}
 
@@ -56,13 +57,13 @@ export default function NewAndMediaSection() {
         time: '2022-03-10 商周財富網',
         content: '大乃綠循環科技（TGRT）利用高溫氣化熱裂解技術，將可燃性廢棄物轉化為類生物質能，不僅能提供穩定再生能源發電，還能改善溫室效應，以循環經濟的模式，讓自然生態系統與產業文明...',
         link: 'https://wealth.businessweekly.com.tw/GArticle.aspx?id=ARTL001000865',
-        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src="/images/news-1.png" alt="生物質能循環再生能源發電，循環經濟實踐垃圾變黃金" srcSet="" />
+        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src={`${prefix}/images/news-1.png`} alt="生物質能循環再生能源發電，循環經濟實踐垃圾變黃金" srcSet="" />
     }, {
         title: '東臺灣新願景 農林業廢棄物轉能源',
         time: '2020-07-17 取自國立教育廣播電台',
         content: '教育部宜花東區域推動中心15日對外演示可移動式生質氣化發電技術，邀集東台灣相關領域專家、台北市七星農田水利會及產業界，針對田間、農場、林間疏伐等生物能源特性盤查、生質氣化技術原理、氣化後...',
         link: 'https://www.youtube.com/watch?v=c-Rpywy4FGw',
-        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src="/images/news-3.jpg" alt="東臺灣新願景 農林業廢棄物轉能源" srcSet="" />
+        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src={`${prefix}/images/news-3.jpg`} alt="東臺灣新願景 農林業廢棄物轉能源" srcSet="" />
     }, {
         title: '綠色組織：6都能源轉型表現與國際有差距',
         time: '2019-06-20 遠見雜誌/綠色和平',
@@ -76,7 +77,7 @@ export default function NewAndMediaSection() {
         time: '2022-06-27 經濟部能源局',
         content: '由於前次三月舉行的上半年審議會結論為「暫不決議」，經濟部今（27）日召開111年電價費率審議臨時會，審議上半年（４月至9月）的電價費率。本次審議會考量燃料價格居高不下，已造成台電營運的巨大壓力，應適時',
         link: 'https://www.moea.gov.tw/Mns/populace/news/News.aspx?kind=1&menu_id=40&news_id=100588',
-        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src="/images/news-2.jpg" alt="電價費率審議會決議將針對用電大戶調漲電價 平均電價漲幅為8.4％" srcSet="" />
+        imgOrVideo: <img width='100%' height='100%' style={{objectFit: 'cover'}} src={`${prefix}/images/news-2.jpg`} alt="電價費率審議會決議將針對用電大戶調漲電價 平均電價漲幅為8.4％" srcSet="" />
     }, {
         title: '燒不掉的垃圾危機',
         time: '2017-03-05 公共電視-我們的島',

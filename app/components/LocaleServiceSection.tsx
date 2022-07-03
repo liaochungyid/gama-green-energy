@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
 import { Grid, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 export default function LocaleServiceSection() {
     const inviewRef = useRef({} as HTMLDivElement);
@@ -37,7 +38,7 @@ export default function LocaleServiceSection() {
 
                 <Grid container spacing={2.5} mb={7.5}>
                     <Grid item xs={7}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/gama_3d.jpg" alt="佳瑪外觀3D圖" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
                     </Grid>
                     <Grid item xs={4} display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
                         <Typography variant='h5' mb={1.25}>台灣第一座合法標準廠</Typography>
@@ -60,10 +61,10 @@ export default function LocaleServiceSection() {
                                 </Typography>
                             </Grid>
                             <Grid item xs={4}>
-                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/gama_appearance.jpg" alt="佳瑪外觀圖" srcSet="" />
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_appearance.jpg`} alt="佳瑪外觀圖" srcSet="" />
                             </Grid>
                             <Grid item xs={4}>
-                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/gama_map.jpg" alt="佳瑪地圖" srcSet="" />
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_map.jpg`} alt="佳瑪地圖" srcSet="" />
                             </Grid>
                         </Grid>
                     </Grid>

@@ -4,6 +4,7 @@ import IconIdea from '@icons/icon-idea.svg'
 import IconIdcard from '@icons/icon-id_card.svg'
 import IconFileText from '@icons/icon-file_text_filled.svg'
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 export default function OurStrengthSection() {
     const inviewRef = useRef({} as HTMLDivElement);
@@ -76,7 +77,7 @@ export default function OurStrengthSection() {
                 </Grid>
 
                 <Grid item xs={12}>
-                    <img width='100%' height='100%' style={{objectFit: 'contain'}} src="/images/leaf.jpg" alt="計畫全局圖" srcSet="" />
+                    <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/leaf.jpg`} alt="計畫全局圖" srcSet="" />
                 </Grid>
             </Grid>
         </Grid>

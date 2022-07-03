@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
 import { Box, Grid, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 interface IPartner {imgPath: string, alt: string};
 
@@ -43,7 +44,7 @@ export default function PartnerSection() {
 
     const RenderPartnerLogo = ({imgPath, alt}: IPartner) => (
         <Box width={120} height={120} display='inline-block' mr='24px'>
-            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={imgPath} alt={alt} srcSet="" />
+            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={prefix + imgPath} alt={alt} srcSet="" />
         </Box>
     );
 
@@ -108,7 +109,7 @@ export default function PartnerSection() {
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
-                            <img width='100%' height='100%' style={{objectFit: 'cover'}} src="/images/team.jpg" alt="合作夥伴" srcSet="" />
+                            <img width='100%' height='100%' style={{objectFit: 'cover'}} src={`${prefix}/images/team.jpg`} alt="合作夥伴" srcSet="" />
                         </Grid>
                     </Grid>
                 </Grid>
