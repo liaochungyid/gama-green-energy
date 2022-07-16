@@ -2,9 +2,38 @@ import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
 import IconArrowLeft from '@icons/icon-arrow-left.svg'
 import IconArrowRight from '@icons/icon-arrow-right.svg'
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, IconButton, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
+
+type IPraticalCase = { id: string, imgPath: string, description: string };
+// interface IRenderPraticalCaseProp extends IPraticalCase { index: number, active: number }
+
+const practicalCaseImgList: IPraticalCase[] = [{
+    id: 'partical-case-div-01',
+    imgPath: '/images/practical-case-01.jpg',
+    description: '貨櫃化設備實況'
+}, {
+    id: 'partical-case-div-02',
+    imgPath: '/images/practical-case-02.jpg',
+    description: '可燃氣燃燒實況'
+}, {
+    id: 'partical-case-div-03',
+    imgPath: '/images/practical-case-03.jpg',
+    description: '貨櫃化設備實況'
+}, {
+    id: 'partical-case-div-04',
+    imgPath: '/images/practical-case-04.jpg',
+    description: '示範設備實況'
+}, {
+    id: 'partical-case-div-05',
+    imgPath: '/images/practical-case-05.jpg',
+    description: '示範設備處理廢棄物種類'
+}];
+
+const practicalCaseIdList = practicalCaseImgList.map(p => p.id);
 
 export default function PracticalCaseSection() {
+    const pageRef = useRef({} as HTMLDivElement);
     const inviewRef = useRef({} as HTMLDivElement);
 
     const options = {
@@ -14,16 +43,74 @@ export default function PracticalCaseSection() {
     };
 
     function onEntry(entry: any) {
-        inviewRef.current.classList.add('visible');
+        // inviewRef.current.classList.add('visible');
         // console.log('in: ', entry.intersectionRatio)
     };
   
     function onExit(entry: any) {
-        inviewRef.current.classList.remove('visible');
+        // inviewRef.current.classList.remove('visible');
         // console.log('out: ', entry.intersectionRatio)
     };
 
     useInView(inviewRef, options, onEntry, onExit);
+
+    const handleSetPage = (ind: number, way: 'left' | 'right'): number => {
+        let nextId = way === 'left' ? ind - 1 : ind + 1;
+        try {
+            handlePageChange(nextId);
+            if (nextId > practicalCaseImgList.length) { nextId = 1 } 
+            else if (nextId < 1) { nextId = practicalCaseImgList.length };
+
+            const refCur = pageRef.current
+            if (refCur) { refCur.innerText = `${nextId}/${practicalCaseImgList.length}` };
+        } catch (err) {
+            console.log(err)
+        }
+        return nextId
+    };
+
+    const handleOnClickLeft = () => {
+        const refCur = pageRef.current
+        try {
+            if (refCur) {
+                const page = Number(refCur.innerHTML.slice(0, refCur.innerHTML.indexOf('/')));
+                handleSetPage(page, 'left');
+            };
+        } catch (err) {
+            console.log(err)
+        };
+    };
+
+    const handleOnClickRight = () => {
+        const refCur = pageRef.current
+        try {
+            if (refCur) {
+                const page = Number(refCur.innerHTML.slice(0, refCur.innerHTML.indexOf('/')));
+                handleSetPage(page, 'right');
+            };
+        } catch (err) {
+            console.log(err)
+        };
+    };
+
+    const handlePageChange = (page: number) => {
+        practicalCaseIdList.map((pcid, index) => {
+            const ele = document.querySelector(`#${pcid}`) as HTMLElement;
+            if (!ele) { return; }
+            if (index < page - 1) {
+                return ele.classList.add('shrink')
+            } else {
+                return ele.classList.remove('shrink')
+            }
+        })
+    }
+    
+    const RenderPraticalCaseImg = React.memo(({id, imgPath, description}: IPraticalCase ) => (
+        <Box id={id} mr={2.5} height='300px' width='400px' sx={{'&.shrink': {width: '0', mr: 0}, transition: 'all 0.7s ease'}}>
+            <img width='400px' height='100%' style={{objectFit: 'cover'}} src={`${prefix}${imgPath}`} alt={description} srcSet="" />
+        </Box>
+    ));
+
     return (
         <Grid id='showcase' container justifyContent='center' alignItems='center' ref={inviewRef}
             sx={{
@@ -36,7 +123,7 @@ export default function PracticalCaseSection() {
             <Grid item xs={12} bgcolor='#050607' mb={41}>
                 <Grid container justifyContent='center'>
                     <Grid item maxWidth='xl' width='100%' my='auto' sx={{
-                        backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/service-04.jpg)',
+                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/service-04.jpg)`,
                         height: '800px',
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
@@ -62,17 +149,27 @@ export default function PracticalCaseSection() {
 
             <Grid item xs={12} bgcolor='#07451A' mb={33.5}>
                 <Grid container maxWidth='lg' mx='auto'>
-                    <Grid item xs={12} py={10}>
+                    <Grid item xs={3} py={10}>
                         <Typography variant='h5' color='info.main' mb={5}>
                         案場現況<br />氣化設備實體
                         </Typography>
                         <Box display='flex' sx={{alignItems: 'center'}}>
-                                <IconArrowLeft />
-                            <Typography variant='h5' mx={3} color='info.main' component='span'>1/5</Typography>
+                            <IconButton onClick={handleOnClickLeft} >
+                                <IconArrowLeft/>
+                            </IconButton>
+                            <Typography ref={pageRef} variant='h5' mx={3} color='info.main' component='span'>1/{practicalCaseImgList.length}</Typography>
+                            <IconButton onClick={handleOnClickRight} >
                                 <IconArrowRight />
+                            </IconButton>
                         </Box>
                     </Grid>
-                    
+                    <Grid item xs={9} position='relative'>
+                        <Box position='absolute' display='flex' sx={{top: 80, left: 0}} >
+                            {practicalCaseImgList.map((p, i) => i + 1 === practicalCaseImgList.length && <RenderPraticalCaseImg key={p.id + '-redundant'} {...p} />)}
+                            {practicalCaseImgList.map((p, i) => <RenderPraticalCaseImg key={p.id} {...p} />)}
+                            {practicalCaseImgList.map((p, i) => i + 1 < practicalCaseImgList.length && <RenderPraticalCaseImg key={p.id + '-redundant'} {...p} />)}
+                        </Box>
+                    </Grid>
                 </Grid>
             </Grid>
         </Grid>

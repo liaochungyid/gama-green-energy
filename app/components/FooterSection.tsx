@@ -7,6 +7,7 @@ import WatchLaterIcon from '@mui/icons-material/WatchLater';
 import IconFax from '@icons/icon-fax.svg';
 import IconMapLocation from '@icons/icon-map_location_dot.svg'
 import IconArrowRight from '@icons/icons-arrow-left.svg';
+import { prefix } from '@utils/prefix';
 
 export default function FooterSection() {
     const inviewRef = useRef({} as HTMLDivElement);
@@ -28,6 +29,12 @@ export default function FooterSection() {
     };
 
     useInView(inviewRef, options, onEntry, onExit);
+
+    const openInNewTab = (url: string) => {
+        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+        if (newWindow) newWindow.opener = null
+    };
+
     return (
         <React.Fragment>
             <Grid id='contactUs' container justifyContent='center' alignItems='center' ref={inviewRef}
@@ -39,7 +46,7 @@ export default function FooterSection() {
                 bgcolor='#07451A'
             >
                 <Grid item maxWidth='xl' xs={12} sx={{
-                    backgroundImage: "url(/images/footer-map.png)",
+                    backgroundImage: `url(${prefix}/images/footer-map.png)`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
@@ -110,12 +117,12 @@ export default function FooterSection() {
                                         transform: 'scale(1)',
                                     }
                                 },
-                            }}>
+                            }} onClick={() => openInNewTab('https://goo.gl/maps/sMFdpi6QEi2pxMwB9')}>
                                 <div></div>
                                 <div></div>
                                 <div></div>
                             </Box>
-                            <Button variant='contained' color='success' sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} onClick={() => {}} endIcon={<IconArrowRight />}>使用電子郵件與我們聯繫</Button>
+                            <Button variant='contained' color='success' sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} onClick={() => openInNewTab('mailto:info@gama-green.com.tw?subject=Hello&body=what you wanna ask us')} endIcon={<IconArrowRight />}>使用電子郵件與我們聯繫</Button>
                         </Grid>
                     </Grid>
                 </Grid>

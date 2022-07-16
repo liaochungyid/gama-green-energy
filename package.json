@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "rimraf -rf node_modules/.cache && set NODE_ENV=production && next build && next export && echo test > out/.nojekyll && git add out/ -f && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages && set NODE_ENV="
+    "deploy": "rimraf -rf node_modules/.cache && set NODE_ENV=production && next build && next export && echo > ./out/.nojekyll && git add out/ -f && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages && set NODE_ENV="
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
@@ -17,9 +17,12 @@
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.8.6",
+    "axios": "^0.27.2",
     "next": "12.1.6",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "react-slideshow-image": "^4.0.1",
+    "react-youtube": "^9.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.18.6",

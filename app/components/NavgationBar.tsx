@@ -1,20 +1,21 @@
-import { AppBar, Box, Button, Grid, IconButton, Slide, useScrollTrigger, Zoom } from "@mui/material";
+import { AppBar, Box, Button, Drawer, Grid, IconButton, ListItem, ListItemButton, ListItemIcon, ListItemText, Slide, useScrollTrigger, Zoom } from "@mui/material";
 import LanguageIcon from '@material-ui/icons/Language';
 import GamaLogo from '@icons/gama-logo.svg';
 import IconScrollToTop from '@icons/icon-scroll_to_top.svg';
 import React from "react";
-
-interface IHeaderPages {
-    name: string,
-    pathName: string,
-};
+import MenuIcon from '@mui/icons-material/Menu';
+import LabelImportantIcon from '@mui/icons-material/LabelImportant';
+import { AppContext } from '@context/index';
 
 export default function NavgationBar() {
+    const [drawerState, setDrawerState] = React.useState(false);
+    const { NavgationBar, toggleLang } = React.useContext(AppContext)
 
     const trigger = useScrollTrigger({
-        disableHysteresis: true,
+        disableHysteresis: false,
+        threshold: 100
     });
-    
+
     const handleClick = (anchorId: string) => {
         const anchor = document.querySelector(anchorId);
     
@@ -25,32 +26,19 @@ export default function NavgationBar() {
             });
         }
     };
+
+    const toggleDrawer = (event: React.KeyboardEvent | React.MouseEvent) => {
+      if (
+        event.type === 'keydown' &&
+        ((event as React.KeyboardEvent).key === 'Tab' ||
+          (event as React.KeyboardEvent).key === 'Shift')
+      ) {
+        return;
+      }
+
+      setDrawerState(prev => !prev);
+    };
     
-    const pages: IHeaderPages[] = [{
-        name: '關於我們',
-        pathName: '#aboutUs'
-    }, {
-        name: '解決方案',
-        pathName: '#solution'
-    }, {
-        name: '案例實績',
-        pathName: '#showcase'
-    }, {
-        name: '我們的優勢',
-        pathName: '#strength'
-    }, {
-        name: '區域服務',
-        pathName: '#localeService'
-    }, {
-        name: '媒體新聞',
-        pathName: '#social'
-    }, {
-        name: '相關問答',
-        pathName: '#faq'
-    }, {
-        name: '聯絡我們',
-        pathName: '#contactUs'
-    }];
 
     return (
         <React.Fragment>
@@ -68,7 +56,7 @@ export default function NavgationBar() {
 
                         <Box mr={1}>
                             <Grid container alignItems='center' spacing={1} height='100%' sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                {pages.map((page) => (
+                                {NavgationBar.pages.map((page) => (
                                     <Grid item key={page.name}>
                                         <Button variant='text' key={page.name} sx={{
                                                 borderRadius: 0,
@@ -87,8 +75,15 @@ export default function NavgationBar() {
                                     </Grid>
                                 ))}
                                 <Grid item>
-                                    <IconButton>
+                                    <IconButton onClick={toggleLang}>
                                         <LanguageIcon />
+                                    </IconButton>
+                                </Grid>
+                            </Grid>
+                            <Grid container alignItems='center' spacing={1} height='100%' sx={{ display: { xs: 'flex', md: 'none' } }}>
+                                <Grid item>
+                                    <IconButton onClick={toggleDrawer}>
+                                        <MenuIcon />
                                     </IconButton>
                                 </Grid>
                             </Grid>
@@ -97,6 +92,23 @@ export default function NavgationBar() {
                     </Box>
                 </AppBar>
             </Slide>
+
+            <Drawer
+                anchor='left'
+                open={drawerState}
+                onClose={toggleDrawer}
+            >
+                {NavgationBar.pages.map(page => (
+                    <ListItem key={page.name} disablePadding>
+                        <ListItemButton onClick={() => handleClick(page.pathName)}>
+                            <ListItemIcon>
+                                <LabelImportantIcon />
+                            </ListItemIcon>
+                            <ListItemText primary={page.name} />
+                        </ListItemButton>
+                    </ListItem>
+                ))}
+            </Drawer>
             
             <Zoom in={trigger}>
                 <Box

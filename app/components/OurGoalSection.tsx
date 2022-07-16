@@ -6,6 +6,7 @@ import IconTree from '@icons/icon-tree.svg';
 import IconClimate from '@icons/icon-climate.svg';
 import IconGlobal from '@icons/icon-global.svg';
 import { Box, Button, Grid, styled, Typography } from "@mui/material";
+import { prefix } from '@utils/prefix';
 
 interface IGoal { id: string, imgLink: string, icon: any, title: string, subtitle: string };
 
@@ -57,7 +58,7 @@ export default function OurGoalSection() {
     const RenderGoal = ({id, imgLink, icon, title, subtitle}: IGoal) => (
         <Box id={id} position='absolute' className={id.includes('01') ? '' : 'invisible'}
             sx={{
-                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${imgLink})`,
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix + imgLink})`,
                 width: '100%',
                 height: '100%',
                 display: 'flex',

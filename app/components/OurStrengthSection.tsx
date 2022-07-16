@@ -40,7 +40,7 @@ export default function OurStrengthSection() {
                 <Grid container spacing={2.5} mb={7.5}>
                     <Grid item xs={4}>
                         <Card sx={{borderRadius: 0, height: '100%'}}>
-                            <CardMedia component='img' height={230} image='/images/advantage-01.jpg' alt='再生能源發電設備' />
+                            <CardMedia component='img' height={230} image={`${prefix}/images/advantage-01.jpg`} alt='再生能源發電設備' />
                             <CardContent sx={{backgroundColor: '#07451A', padding: '24px 24px 48px', height: 'calc(100% - 230px)'}}>
                                 <IconIdea />
                                 <Typography variant='h5' my={2.5} color='common.white'>再生能源發電設備</Typography>
@@ -50,7 +50,7 @@ export default function OurStrengthSection() {
                     </Grid>
                     <Grid item xs={4}>
                         <Card sx={{borderRadius: 0, height: '100%'}}>
-                            <CardMedia component='img' height={230} image='/images/advantage-02.jpg' alt='再生能源發電設備' />
+                            <CardMedia component='img' height={230} image={`${prefix}/images/advantage-02.jpg`} alt='再生能源發電設備' />
                             <CardContent sx={{backgroundColor: '#07451A', padding: '24px 24px 48px !important'}}>
                                 <IconIdcard />
                                 <Typography variant='h5' my={2.5} color='common.white'>廢棄物再利用資格</Typography>
@@ -60,7 +60,7 @@ export default function OurStrengthSection() {
                     </Grid>
                     <Grid item xs={4}>
                         <Card sx={{borderRadius: 0, height: '100%'}}>
-                            <CardMedia component='img' height={230} image='/images/advantage-03.jpg' alt='再生能源發電設備' />
+                            <CardMedia component='img' height={230} image={`${prefix}/images/advantage-03.jpg`} alt='再生能源發電設備' />
                             <CardContent sx={{backgroundColor: '#07451A', padding: '24px 24px 48px', height: 'calc(100% - 230px)'}}>
                                 <IconFileText />
                                 <Typography variant='h5' my={2.5} color='common.white'>固定汙染源申報</Typography>

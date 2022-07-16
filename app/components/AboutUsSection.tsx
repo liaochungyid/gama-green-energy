@@ -1,10 +1,13 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView'
 import { Box, Grid, styled, Typography } from "@mui/material";
+import { AppContext } from '@context/index';
+import { prefix } from '@utils/prefix';
+import YouTube from 'react-youtube';
 
 const StyledBox = styled(Box)({
     width: '100%',
-    height: '320px',
+    height: '287px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
@@ -16,6 +19,16 @@ const StyledBox = styled(Box)({
 });
 
 export default function AboutUsSection() {
+    const { AboutUsSection } = React.useContext(AppContext);
+    const [imgPart1, imgPart2, imgPart3] = AboutUsSection.imagePart;
+    const {
+        title,
+        titileDes,
+        subtitleFirstLine,
+        subtitleSecondLine,
+        contentFirstPara,
+        contentSecondPara
+    } = AboutUsSection.descriptionPart;
     const inviewRef = useRef({} as HTMLDivElement);
 
     const options = {
@@ -44,58 +57,64 @@ export default function AboutUsSection() {
             }}
             id='aboutUs'
         >
-            <Grid item maxWidth='lg' width='100%'>
-                <Grid container spacing={6}>
-                    <Grid item xs={5}>
+            <Grid item maxWidth='xl' width='100%'>
+                <Grid container columnSpacing={6}>
+                    <Grid item xs={4}>
                         <StyledBox
                             sx={{
-                                backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/about_us_1.jpg)',
+                                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(${prefix}/images/about_us_1.jpg)`,
                             }}
                         >
-                            <Typography variant='h5' color='info.main' mb={2.5}>再生能源</Typography>
+                            <Typography variant='h5' color='info.main' mb={2.5}>{imgPart1.title || '再生能源'}</Typography>
                             <Typography variant='body1' color='common.white'>
-                            指原材料可以再生的能源，特性為用之不竭 ，不受能源短缺的影響，可促使未來家園與環境永續共生。
+                            {imgPart1.description || '原材料可以再被利用生成能源，特性為用之不竭，不受能源短缺的影響，可促使未來家園與環境永續共生。'}
                             </Typography>
                         </StyledBox>
 
                         <StyledBox
                             sx={{
-                                backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/about_us_2.jpg)',
+                                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(${prefix}/images/about_us_2.jpg)`,
                             }}
                         >
-                            <Typography variant='h5' color='info.main' mb={2.5}>回收利用</Typography>
+                            <Typography variant='h5' color='info.main' mb={2.5}>{imgPart2.title || '回收利用'}</Typography>
                             <Typography variant='body1' color='common.white'>
-                            運用專業技術及客製化服務，將廢棄有機資材轉化發電，進而達到轉廢為能資源循環。
+                            {imgPart2.description || '運用專業技術及客製化服務，將廢棄有機資材轉化發電，進而達到轉廢為能資源循環最新氣化技術。'}
                             </Typography>
                         </StyledBox>
 
                         <StyledBox
                             sx={{
-                                backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/about_us_3.jpg)',
+                                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(${prefix}/images/about_us_3.jpg)`,
                             }}
                         >
-                            <Typography variant='h5' color='info.main' mb={2.5}>循環經濟</Typography>
+                            <Typography variant='h5' color='info.main' mb={2.5}>{imgPart3.title || '循環經濟'}</Typography>
                             <Typography variant='body1' color='common.white'>
-                            高溫氣化反應是比直接燃燒更清潔的處理方式，可解決環境現況，轉變人類產業活動，創造農業廢棄物新價值。
+                            {imgPart3.description || '提升資源利用效率，減少生質廢棄物的產生，重視資源的再利用，創造廢棄物的新價值。'}
                             </Typography>
                         </StyledBox>
                         
                     </Grid>
-                    <Grid item xs={7} my='auto'>
-                        <Typography variant='h2' color='secondary.main' mb={2.5}>關於我們</Typography>
+                    <Grid item xs={7} ml='auto' display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
+                        <Typography variant='h2' color='secondary.main' mb={2.5}>{title || '關於我們'}</Typography>
                         <Typography variant='subtitle2' color='common.black' mb={7.5}>
-                        佳瑪環能利用高溫氣化熱裂解技術，將可燃性廢棄物轉化為類生物質能，不僅能提供穩定再生能源發電，還能改善溫室效應，以循環經濟的模式，讓自然生態系統與產業文明的發展，取得和諧與永續的平衡點。
+                            {titileDes || '佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(Refuse derived fuel, RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(Micro Gas Turbine Generator, MTG)轉換成電力提供穩定的再生能源。'}
                         </Typography>
                         <Typography variant='h5' color='secondary.main' mb={2.5}>
-                        生物質能為地球最大的資源之一<br />生質能源循環能兼顧環保與永續
+                            {subtitleFirstLine || '生物質能為地球最大的資源之一'}
+                            <br />
+                            {subtitleSecondLine || 'subtitleSecondLine'}
                         </Typography>
                         <Typography variant='subtitle2' color='common.black'>
-                        利用大氣、水、土壤（微生物）等透過光合作用而產生的各種有機體，即一切有生命的、可以生長的有機物質通稱為生物質。而所謂的生質能源指的就是「由生物質(biomass)轉換而生的能源」。
-                        <br /><br />
-                        生質能源最大的價值在於「循環」，例如：利用植物行光合作用將空氣中的二氧化碳固定下來後，透過各種方法轉化為生質燃料，利用燃料的過程中又將二氧化碳釋放回空氣中；透過這樣的循環，能避免釋放額外的二氧化碳到空氣裡，所以不會加重溫室效應，同時也是唯一一種可再生的碳源，這也是一種兼顧環保與永續經營的能源型態。
-                        <br /><br />
-                        響應我國再生能源政策，增加綠色能源發電比例為永續發展目標，促進台灣能源多元化，實現分散式電網的理想，並改善現在與未來台灣所必須面對的環境廢棄物所衍生的環保問題。
+                            {contentFirstPara || '生質能源最大的價值在於「循環」，植物行光合作用會將空氣中的二氧化碳固定下來，可透過各種方法轉化為生質燃料，使用生物質燃料可將二氧化碳釋放回空氣中的友善循環。'}
+                            <br /><br />
+                            {contentSecondPara || '佳瑪環能的核心目標，係將廢棄物資材轉換成能源，舉凡一般生活、工業、及農業等生質廢棄物，都是我們關注的可用資源。此外佳瑪環能相當注重生質廢棄物能源化過程中所產生的污染是否符合環保規範。'}
                         </Typography>
+                    </Grid>
+
+                    <Grid item xs={12} mt={10} ml={6} height='0' pb='56.25%' position='relative'>
+                        <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
+                            <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%'}}/>
+                        </Box>
                     </Grid>
                 </Grid>
             </Grid>

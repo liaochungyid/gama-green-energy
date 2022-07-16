@@ -4,9 +4,19 @@ import IconPower from '@icons/icon-subway_power.svg'
 import IconWater from '@icons/icon-ion_water.svg'
 import IconLeaf from '@icons/icon-leaf_solid.svg'
 import { Grid, Typography } from "@mui/material";
+import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 
 export default function SolutionSection() {
+    const { SolutionSection } = React.useContext(AppContext);
+    const {
+        title,
+        titleDes,
+        subtitleFirst,
+        contentFirst,
+        subtitleSecond,
+        contentSecond
+    } = SolutionSection;
     const inviewRef = useRef({} as HTMLDivElement);
 
     const options = {
@@ -34,33 +44,66 @@ export default function SolutionSection() {
                 }
             }}
         >
-            <Grid item width='100%' bgcolor='#050607'  mb={7.5}>
+            <Grid item width='100%' bgcolor='#050607' mb={7.5}>
                 <Grid container justifyContent='center'>
                     <Grid item maxWidth='xl' width='100%' my='auto' sx={{
-                        backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/solution_bg.jpg)',
-                        height: '276px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
+                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/solution_bg.jpg)`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                     }}>
-                        <Typography variant='h2' color='info.main' mb={2.5}>解決方案</Typography>
-                        <Typography variant='subtitle2' color='common.white' mb={4}>
-                        首創微型高溫氣化技術轉化能源 有效解決垃圾焚化問題及穩定供電
-                        </Typography>
+                        <Grid container py={10}>
+                            <Grid item xs={5} sx={{
+                            }}>
+                                <img src={`${prefix}/images/solution_title.jpg`} width='100%' alt="解決方案" />
+                            </Grid>
+                            <Grid item xs={6} ml='auto' display='flex' flexDirection='column' sx={{justifyContent: 'center'}}>
+                                <Typography variant='h2' color='info.main' mb={2.5}>{title || '解決方案'}</Typography>
+                                <Typography variant='subtitle2' color='common.white' mb={4}>
+                                    {titleDes || '首創微型高溫氣化熱裂解技術可有效解決垃圾焚化及能源不足等問題'}
+                                </Typography>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>
-            <Grid item maxWidth='lg' mb={7.5}>
+            
+            <Grid item maxWidth='xl' mb={7.5}>
                 <Grid container spacing={[1.5, 7.5]}>
-                    <Grid item xs={10} mx='auto'>
-                        <Typography variant='subtitle2' color='common.black'>
-                        一直以來，垃圾處理就是各國各城市的一個大議題，而目前台灣計有二十四座焚化爐，不單是採用三、四十年前的焚化技術，每日平均處理約一千噸混雜垃圾，大量體設備系統運作對於環境的衝擊性相對較大外，加上一般焚化廠正常使用年限二十年，隨著台灣多數垃圾焚化廠使用年限即將屆滿，屆時又要面對廢棄物去化的問題。
+                    <Grid item xs={12}>
+                        <Typography variant='h5' color='secondary.main' mb={5}>
+                            {subtitleFirst || '佳瑪環能的氣化技術具有下列的優點'}
                         </Typography>
                     </Grid>
+                    <Grid item xs={12}>
+                        <Grid container>
+                            <Grid item xs={3} height={200} bgcolor='#07451A' p={3}>
+                                <Typography variant='h2' color='info.main'>01.</Typography>
+                                <Typography variant='subtitle2' color='common.white'>
+                                合成燃氣在燃燒前加以淨化，可完全燃燒，燃燒後不會產生煙道氣
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={3} height={200} bgcolor='#10692B' p={3}>
+                                <Typography variant='h2' color='info.main'>02.</Typography>
+                                <Typography variant='subtitle2' color='common.white'>
+                                合成然氣可以在燃氣渦輪機中產生電力，相較一般焚化爐以汽電共生方式發電，更便宜更有效率
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={3} height={200} bgcolor='#07451A' p={3}>
+                                <Typography variant='h2' color='info.main'>03.</Typography>
+                                <Typography variant='subtitle2' color='common.white'>
+                                聚焦下吸式結構，讓氣化更完全
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={3} height={200} bgcolor='#10692B' p={3}>
+                                <Typography variant='h2' color='info.main'>04.</Typography>
+                                <Typography variant='subtitle2' color='common.white'>
+                                熱裂解過程中所產生之焦油必須通過熱焦炭床，因此焦油含量低
+                                </Typography>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+
                     <Grid item xs={12}>
                         <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-01.jpg`} alt="設備流程" srcSet="" />
                     </Grid>
@@ -94,110 +137,6 @@ export default function SolutionSection() {
                 </Grid>
             </Grid>
 
-
-            <Grid item width='100%' bgcolor='#050607'  mb={7.5}>
-                <Grid container justifyContent='center'>
-                    <Grid item maxWidth='xl' width='100%' my='auto' sx={{
-                        backgroundImage: 'linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/service-04.jpg)',
-                        height: '276px',
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundPosition: 'center',
-                        backgroundSize: 'cover',
-                    }}>
-                        <Typography variant='h5' color='info.main' mb={2.5}>生質能技術整合RDF-7</Typography>
-                        <Grid container spacing={4.5} justifyContent='center'>
-                            <Grid item xs={3} display='flex' sx={{flexWrap: 'nowrap', alignItems: 'center'}}>
-                                <IconPower />
-                                <Typography ml={2} variant='subtitle2' color='common.white'>廢棄物能源化：氣化爐技術及脱焦油系統</Typography>
-                            </Grid>
-                            <Grid item xs={3} display='flex' sx={{flexWrap: 'nowrap', alignItems: 'center'}}>
-                                <IconWater />
-                                <Typography ml={2} variant='subtitle2' color='common.white'>醫療廢棄物(有機物)：水離子裂解碳化技術</Typography>
-                            </Grid>
-                            <Grid item xs={3} display='flex' sx={{flexWrap: 'nowrap', alignItems: 'center'}}>
-                                <IconLeaf />
-                                <Typography ml={2} variant='subtitle2' color='common.white'>農業廢棄物轉換土壤改良生物資材：快速發酵系統</Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Grid>
-
-            <Grid item maxWidth='lg' mb={7.5}>
-                <Grid container spacing={[1.5, 7.5]}>
-                    <Grid item xs={6}>
-                        <Typography variant='subtitle2' color='common.black'>
-                        佳瑪環能擁有廢棄物能資源技術，能以高溫氣化(gasification)技術將廢棄物轉換成合成氣(syngas，又稱可燃氣)，再透過燃氣渦輪發電機將合成氣轉換成電力。有別於傳統常見的固態廢棄物衍生燃料 RDF-5，此技術屬於 RDF-7。將廢棄物加工成合成氣體後再作為燃料使用，燃料等級與能源轉換效率更高。
-                        <br /><br />
-                        廢棄物氣化的原理如影片所示，將可燃性廢棄物經由主要流程：乾燥、裂解、 氧化、還原四個階段，分解為氫氣及一氧化碳等合成燃氣，即為 RDF-7；佳瑪環能使用順流固定床氣化爐，爐體包括一個含碳之生質物燃料固定床，並具有水蒸氣、氧氣、空氣等氣化媒介，氣化媒介的氣體與燃料以同方向流動(向下)的方式流過含碳之生質物燃料固定床，因此又稱為下吸式氣化爐。
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6} display='flex' alignItems='center'>
-                        <video controls width='100%'>
-                            <source src="http://www.tgrtservice.com/video/生質氣化流程影片.mp4" type="video/mp4" />
-                        </video>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Typography variant='h5' textAlign='center' color='secondary.main'>
-                        此氣化流程具有下列的優點
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <Grid container>
-                            <Grid item xs={4} height={200} bgcolor='#07451A' p={3}>
-                                <Typography variant='h2' color='info.main'>01.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                合成燃氣在燃燒前加以淨化，可完全燃燒，燃燒後不會產生煙道氣
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={4} height={200} bgcolor='#10692B' p={3}>
-                                <Typography variant='h2' color='info.main'>02.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                合成然氣可以在燃氣渦輪機中產生電力，相較一般焚化爐以汽電共生方式發電，更便宜更有效率
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={4} height={200} bgcolor='#07451A' p={3}>
-                                <Typography variant='h2' color='info.main'>03.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                聚焦下吸式結構，讓氣化更完全
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={4} height={200} bgcolor='#10692B' p={3}>
-                                <Typography variant='h2' color='info.main'>04.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                熱裂解過程中所產生之焦油必須通過熱焦炭床，因此焦油含量低
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={4} height={200} bgcolor='#07451A' p={3}>
-                                <Typography variant='h2' color='info.main'>05.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                使用濕式多級迴圈循環淨化冷凝降溫方式，冷凝水迴圈循環利用
-                                </Typography>
-                            </Grid>
-                            <Grid item xs={4} height={200} bgcolor='#10692B' p={3}>
-                                <Typography variant='h2' color='info.main'>06.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                自動化操作，界面簡易，僅 1~2 人可操作整個系統
-                                </Typography>
-                            </Grid>
-                        </Grid>
-                    </Grid>
-
-                    <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-05.jpg`} alt="設備貨櫃化展示" srcSet="" />
-                    </Grid>
-                    <Grid item xs={6} display='flex' alignItems='center'>
-                        <Typography variant='subtitle2' color='common.black'>
-                        佳瑪環能所採用的氣化技術與焚化爐(燃燒)有著定義上的不同，是一個精準控制的熱裂解技術，氣化空氣量越高，操作溫度越高;空氣係數超過 1 時將變成焚化，氣化處理操作必須非常謹慎，氣化處理反應溫度對於氣化產物的影響大，反應溫度 越高，可降低焦油及焦炭等副產物，但是合成氣熱值會降低，減少利用率，因此我們所掌握的關鍵技術，能將廢棄物有效地轉化為能源與資源。
-                        </Typography>
-                    </Grid>
-
-                </Grid>
-            </Grid>
 
             <Grid item width='100%' bgcolor='#F3F3F3' py={7.5} sx={{
                 position: 'relative',

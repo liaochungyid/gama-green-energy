@@ -36,7 +36,7 @@ export default function CostEffectivenessSection() {
         >
             <Grid item maxWidth='lg' width='100%'>
                 <Grid container spacing={7.5}>
-                    <Grid id='our-goal-btn-div' item xs={9} my='auto'>
+                    <Grid item xs={9} my='auto'>
                         <Typography variant='h2' color='secondary.main' mb={2.5}>成本效益</Typography>
                         <Typography variant='subtitle2' color='common.black'>
                         GAMA第一期400kW之發電設備一年最大發電量約為3504000度，依能源局最公布之109年度電力排碳係數0.502公斤CO2e換算，一年約可減少1,759公噸CO2排放，約為177公頃造林效益(3.425座大安森林公園)。此外GAMA發電是回收廢棄物中的能量，一年可以解決3,504公噸的廢棄物處理量，並收取廢棄物處理費及賺取躉售台電的收益。
