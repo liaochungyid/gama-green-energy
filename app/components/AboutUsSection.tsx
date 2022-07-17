@@ -4,15 +4,27 @@ import { Box, Grid, styled, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 import YouTube from 'react-youtube';
+import theme from 'theme';
 
 const StyledBox = styled(Box)({
     width: '100%',
-    height: '287px',
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '0 90px',
+    padding: '20px 90px',
+    [theme.breakpoints.down('xl')]: {
+        padding: '40px 72px'
+    },
+    [theme.breakpoints.down('lg')]: {
+        padding: '32px 56px'
+    },
+    [theme.breakpoints.down('md')]: {
+        padding: '28px 40px'
+    },
+    [theme.breakpoints.down('sm')]: {
+        padding: '20px 20px'
+    },
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
     backgroundSize: 'cover',
@@ -57,9 +69,9 @@ export default function AboutUsSection() {
             }}
             id='aboutUs'
         >
-            <Grid item maxWidth='xl' width='100%'>
+            <Grid item maxWidth='xl' width='100%' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                 <Grid container columnSpacing={6}>
-                    <Grid item xs={4}>
+                    <Grid item xs={12} sm={5} md={4} display={{xs: 'flex', sm: 'block'}} mb={{xs: 5, sm: 0}}>
                         <StyledBox
                             sx={{
                                 backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),url(${prefix}/images/about_us_1.jpg)`,
@@ -94,9 +106,9 @@ export default function AboutUsSection() {
                         </StyledBox>
                         
                     </Grid>
-                    <Grid item xs={7} ml='auto' display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
+                    <Grid item xs={12} sm={7} ml='auto' display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
                         <Typography variant='h2' color='secondary.main' mb={2.5}>{title || '關於我們'}</Typography>
-                        <Typography variant='subtitle2' color='common.black' mb={7.5}>
+                        <Typography variant='subtitle2' color='common.black' mb={{xs: 4, sm: 7.5}}>
                             {titileDes || '佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(Refuse derived fuel, RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(Micro Gas Turbine Generator, MTG)轉換成電力提供穩定的再生能源。'}
                         </Typography>
                         <Typography variant='h5' color='secondary.main' mb={2.5}>

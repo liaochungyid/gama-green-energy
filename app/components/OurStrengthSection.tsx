@@ -52,7 +52,7 @@ export default function OurStrengthSection() {
     useInView(inviewRef, options, onEntry, onExit);
 
     const CardItem = ({imgpath, icon, title, titleDes}: CardItemProps) => (
-        <Grid item xs={4}>
+        <Grid item xs={12} sm={4}>
             <Card sx={{backgroundColor: '#07451A', borderRadius: 0, height: '100%'}}>
                 <CardMedia component='img' height={230} image={imgpath} alt={title} />
                 <CardContent sx={{padding: '24px 24px 48px !important'}}>

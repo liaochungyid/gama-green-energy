@@ -13,6 +13,7 @@ import SolutionSection from '@components/SolutionSection'
 import type { NextPage } from 'next'
 import axios from 'axios'
 import React from 'react'
+import GlobalStyle from 'theme/GlobalStyle';
 
 const Home: NextPage = () => {
   const [lang, setLang] = React.useState('zh');
@@ -38,6 +39,7 @@ const Home: NextPage = () => {
 
   return (
     <AppContext.Provider value={{...AppState, ...context, toggleLang}}>
+      {GlobalStyle}
       <NavgationBar />
       <HeroSection />
       <AboutUsSection />

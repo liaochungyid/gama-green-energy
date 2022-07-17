@@ -55,12 +55,12 @@ export default function FaqSection() {
 
     const QAList = ({bgcolor, title, qaList}: IQAList ) => (
         <Grid container justifyContent='center' columnSpacing={3}>
-            <Grid item xs={1} pb={2}>
-                <Box bgcolor={bgcolor} ml='auto' height='100%' width='50%' display='flex' sx={{alignItems: 'center', justifyContent: 'center'}}>
+            <Grid item xs={2} md={1} pb={2}>
+                <Box bgcolor={bgcolor} ml='auto' height='100%' width={{xs: '100%'}} display='flex' sx={{alignItems: 'center', justifyContent: 'center'}}>
                     <Typography variant='subtitle1' color='common.white'>{title}</Typography>
                 </Box>
             </Grid>
-            <Grid item xs={7}>
+            <Grid item xs={10} sm={9} md={8} lg={7}>
                 {qaList.map(f => <RenderFaq key={f.q} {...f} />)}
             </Grid>
         </Grid>
@@ -84,7 +84,7 @@ export default function FaqSection() {
                 <Typography variant='h2' color='info.main' textAlign='center' py={10}>{title || '相關問答'}</Typography>
             </Grid>
 
-            <Grid item xs={12} maxWidth='xl'>
+            <Grid item xs={12} maxWidth='xl' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                 <QAList bgcolor='#0A5822' title={subtitleFuel || '燃料'} qaList={qaFuel} />
                 <QAList bgcolor='#13702F' title={subtitleTechnology || '技術'} qaList={qaTechnology} />
                 <QAList bgcolor='#1F8940' title={subtitlePowGen || '發電'} qaList={qaPowGen} />

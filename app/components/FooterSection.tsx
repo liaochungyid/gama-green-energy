@@ -49,6 +49,14 @@ export default function FooterSection() {
         if (newWindow) newWindow.opener = null
     };
 
+    const CtaButton = () => (
+        <Button variant='contained' color='success' 
+            sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} 
+            onClick={() => openInNewTab('mailto:service@gama-green.com.tw?subject=Hello&body=what you wanna ask us')} 
+            endIcon={<IconArrowRight />}
+        >{cta || '使用電子郵件與我們聯繫'}</Button>
+    );
+
     return (
         <React.Fragment>
             <Grid id='contactUs' container justifyContent='center' alignItems='center' ref={inviewRef}
@@ -66,7 +74,7 @@ export default function FooterSection() {
                     backgroundSize: 'cover',
                 }}>
                     <Grid container maxWidth='lg' mx='auto' py={15}>
-                        <Grid item xs={6} padding={7.5} sx={{background: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(7px)'}}>
+                        <Grid item xs={12} sm={6} padding={7.5} sx={{background: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(7px)'}}>
                             <Typography variant='h2' color='common.white' mb={3.75}>{title || '聯繫我們'}</Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <IconMapLocation />
@@ -93,8 +101,12 @@ export default function FooterSection() {
                                 <Typography variant='inherit' ml={3} component='span'>{email|| 'service@gama-green.com.tw'}</Typography>
                             </Typography>
                         </Grid>
-                        <Grid item xs={6} display='flex' sx={{flexDirection: 'column', }}>
+                        <Grid item display={{sm: 'none'}} mx='auto'>
+                            <CtaButton />
+                        </Grid>
+                        <Grid item xs={6} display={{xs: 'none', sm: 'flex'}} sx={{flexDirection: 'column', }}>
                             <Box mx='auto' mt='auto' sx={{
+                                cursor: 'pointer',
                                 color: '#51FE28',
                                 position: 'relative',
                                 display: 'block',
@@ -140,11 +152,7 @@ export default function FooterSection() {
                                 <div></div>
                                 <div></div>
                             </Box>
-                            <Button variant='contained' color='success' 
-                                sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} 
-                                onClick={() => openInNewTab('mailto:service@gama-green.com.tw?subject=Hello&body=what you wanna ask us')} 
-                                endIcon={<IconArrowRight />}
-                            >{cta || '使用電子郵件與我們聯繫'}</Button>
+                            <CtaButton />
                         </Grid>
                     </Grid>
                 </Grid>
