@@ -1,0 +1,26 @@
+{
+    "NavgationBar": {
+        "pages": [{
+            "name": "About",
+            "pathName": "#aboutUs"
+        }, {
+            "name": "Solution",
+            "pathName": "#solution"
+        }, {
+            "name": "Showcase",
+            "pathName": "#showcase"
+        }, {
+            "name": "Advantage",
+            "pathName": "#strength"
+        }, {
+            "name": "Localization",
+            "pathName": "#localeService"
+        }, {
+            "name": "FAQ",
+            "pathName": "#faq"
+        }, {
+            "name": "Contact",
+            "pathName": "#contactUs"
+        }]
+    }
+}
