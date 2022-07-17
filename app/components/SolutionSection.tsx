@@ -1,11 +1,10 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView'
-import IconPower from '@icons/icon-subway_power.svg'
-import IconWater from '@icons/icon-ion_water.svg'
-import IconLeaf from '@icons/icon-leaf_solid.svg'
-import { Grid, Typography } from "@mui/material";
+import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
+
+interface AdvantageCardProps {title: string; description: string}
 
 export default function SolutionSection() {
     const { SolutionSection } = React.useContext(AppContext);
@@ -15,7 +14,9 @@ export default function SolutionSection() {
         subtitleFirst,
         contentFirst,
         subtitleSecond,
-        contentSecond
+        contentSecond,
+        subtitleThird,
+        contentThird
     } = SolutionSection;
     const inviewRef = useRef({} as HTMLDivElement);
 
@@ -36,9 +37,36 @@ export default function SolutionSection() {
     };
 
     useInView(inviewRef, options, onEntry, onExit);
+
+    const AdvantageCard = ({title, description}: AdvantageCardProps) => (
+        <Grid item xs={3} minHeight={200} bgcolor='#F3F3F3' mb={4} py={3} pl={4} pr={2} position='relative' sx={{
+            '&::before': {
+                content: '""',
+                position: 'absolute',
+                right: 0,
+                top: '35%',
+                height: '30%',
+                width: '2px',
+                backgroundColor: '#86D800'
+            }
+        }}>
+            <Typography variant='h2' color='info.light'>{title}</Typography>
+            <Typography variant='subtitle2' color='common.black'>{description}</Typography>
+            {(title === '07.' || title === '04.') && <Box sx={{
+                backgroundColor: '#F3F3F3',
+                position: 'absolute',
+                left: '100%',
+                top: 0,
+                width: '50vw',
+                height: '100%',
+            }} />}
+        </Grid>
+    );
+
     return (
         <Grid id='solution' container justifyContent='center' alignItems='center' ref={inviewRef}
             sx={{
+                overflow: 'hidden',
                 perspective: '100px',
                 '&.visible': {
                 }
@@ -57,9 +85,9 @@ export default function SolutionSection() {
                             }}>
                                 <img src={`${prefix}/images/solution_title.jpg`} width='100%' alt="解決方案" />
                             </Grid>
-                            <Grid item xs={6} ml='auto' display='flex' flexDirection='column' sx={{justifyContent: 'center'}}>
+                            <Grid item xs={5} mx='auto' display='flex' flexDirection='column' sx={{justifyContent: 'center'}}>
                                 <Typography variant='h2' color='info.main' mb={2.5}>{title || '解決方案'}</Typography>
-                                <Typography variant='subtitle2' color='common.white' mb={4}>
+                                <Typography variant='h5' color='common.white' mb={4}>
                                     {titleDes || '首創微型高溫氣化熱裂解技術可有效解決垃圾焚化及能源不足等問題'}
                                 </Typography>
                             </Grid>
@@ -69,76 +97,85 @@ export default function SolutionSection() {
             </Grid>
             
             <Grid item maxWidth='xl' mb={7.5}>
-                <Grid container spacing={[1.5, 7.5]}>
+                <Grid container>
                     <Grid item xs={12}>
                         <Typography variant='h5' color='secondary.main' mb={5}>
                             {subtitleFirst || '佳瑪環能的氣化技術具有下列的優點'}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12}>
-                        <Grid container>
-                            <Grid item xs={3} height={200} bgcolor='#07451A' p={3}>
-                                <Typography variant='h2' color='info.main'>01.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                合成燃氣在燃燒前加以淨化，可完全燃燒，燃燒後不會產生煙道氣
-                                </Typography>
+                    <Grid item xs={12} position='relative'>
+                        <Grid container justifyContent='flex-end'>
+                            {contentFirst.map((c, i) => <AdvantageCard key={c} title={`0${i+1}.`} description={c} />)}
+                        </Grid>
+                        <Box position='absolute' width='100%' height='126px' sx={{
+                            bottom: 0,
+                            left: 0,
+                            backgroundImage: `url(${prefix}/images/gama_watermark.svg)`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPositionX: 'left',
+                            backgroundSize: 'contain',
+                            transform: 'translateX(calc(-50vw + 50%))',
+                            marginBottom: 8,
+                        }} />
+                    </Grid>
+
+                    <Grid item xs={12} mb={10}>
+                        <Grid container alignItems='center'>
+                            <Grid item xs={4}>
+                                <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleSecond || '以分散式能資源中心深化運用循環經濟模式遍地開花'}</Typography>
+                                <Typography variant='subtitle2' color='common.black'>{contentSecond[0] || '垃圾處理一直是各城市的大議題，目前台灣的焚化爐大多採用三、四十年前的焚化技術，每日處理約一千噸混雜垃圾，對於環境的衝擊性相對大。加上一般焚化廠使用年限為二十年，隨著台灣多數垃圾焚化廠使用年限屆滿，須面對廢棄物的去化。'}</Typography>
                             </Grid>
-                            <Grid item xs={3} height={200} bgcolor='#10692B' p={3}>
-                                <Typography variant='h2' color='info.main'>02.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                合成然氣可以在燃氣渦輪機中產生電力，相較一般焚化爐以汽電共生方式發電，更便宜更有效率
-                                </Typography>
+                            <Grid item xs={8}>
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-01.jpg`} alt="設備流程" srcSet="" />
                             </Grid>
-                            <Grid item xs={3} height={200} bgcolor='#07451A' p={3}>
-                                <Typography variant='h2' color='info.main'>03.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                聚焦下吸式結構，讓氣化更完全
-                                </Typography>
+                        </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} mb={10}>
+                        <Grid container alignItems='center'>
+                            <Grid item xs={5}>
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
                             </Grid>
-                            <Grid item xs={3} height={200} bgcolor='#10692B' p={3}>
-                                <Typography variant='h2' color='info.main'>04.</Typography>
-                                <Typography variant='subtitle2' color='common.white'>
-                                熱裂解過程中所產生之焦油必須通過熱焦炭床，因此焦油含量低
+                            <Grid item xs={6} ml='auto'>
+                                <Typography variant='subtitle2' color='common.black'>
+                                {contentSecond[1] || '綜觀台灣所面臨的廢棄物處理狀況，佳瑪環能所設計的廢棄物資源轉換系統，不僅可高效再利用有機廢棄物，也可將廢熱回收用來供熱CHP或製冷CCHP，能源轉換效率相對高。而能量轉換過程中的產生的碳黑、灰份、工業醋酸(木醋液)等，亦可提供工(農)業再利用，達成廢棄物皆資源化的目標。'}
+                                <br /><br />
+                                {contentSecond[2] || '佳瑪環能擁有廢棄物能資源系統整合經驗及固定污染源處理執照 ; 在建置區域型微型發電廠方面採用特殊氣化技術將廢棄物轉換成RDF-7廢棄物衍生燃料供給高效率的微渦輪機發電，可24小時運轉且容量因素可達80-90，並將廢熱回收用來供暖或製冷，有別於其他使用固態廢棄物衍生燃料(Solid recovered fuel, SRF) 的電廠，則須先消耗能量將廢棄物製成SRF。'}
                                 </Typography>
                             </Grid>
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={12}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-01.jpg`} alt="設備流程" srcSet="" />
+                    <Grid item xs={12} mb={10}>
+                        <Grid container alignItems='center'>
+                            <Grid item xs={6} py={10} pr={15} bgcolor='#07451A' position='relative' sx={{
+                                '&::before': {
+                                    content: '""',
+                                    position: 'absolute',
+                                    width: '50vw',
+                                    height: '100%',
+                                    top: 0,
+                                    left: 0,
+                                    zIndex: -1,
+                                    backgroundColor: '#07451A',
+                                    transform: 'translateX(calc(-50vw + 50%))'
+                                }
+                            }}>
+                                <Typography variant='subtitle2' color='common.white'>
+                                {contentSecond[3] || '相較於以火力、核能發電場為主的集中式電網，佳瑪環能的優勢在於設置微型分散式能資源轉換中心，可以協助成為台灣電力穩定備載支撐，還能就近處理生質廢棄物的去化，並減少長途運送的碳排放。'}
+                                </Typography>
+                            </Grid>
+                            <Grid item xs={6} ml='auto'>
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-02.jpg`} alt="去中心化" srcSet="" />
+                            </Grid>
+                        </Grid>
                     </Grid>
 
-                    <Grid item xs={6}>
-                        <Typography variant='subtitle2' color='common.black'>
-                        綜觀台灣所面臨的廢棄物處理狀況，佳瑪環能依據歐盟生質能中心規範，規劃廢棄物能資源轉換系統設備，藉由高溫氣化裂解及氣體純化技術，將廢棄物直接轉換成乾淨的合成氣(syngas，主要氣體成分為CO、H2、CH4)，供給微型渦輪機發電及製冷(熱)系統轉換供冷(熱)，提昇能源綜合使用效率，製程介面的碳、灰份、工業醋酸(或木醋)等，亦可提供工(農)業再利用，達成資源化的目標。
-                        <br /><br />
-                        由於佳瑪環能擁有廢棄物能資源系統整合技術，採用高溫氣化(gasification)技術將廢棄物轉換成合成氣(syngas)，再透過微型燃氣渦輪發電機將合成氣轉換成電力，建置區域型微型發電廠。因能有別於傳統常見的固態廢棄物衍生燃料，利用區域型分散式微型高溫氣化及燃氣渦輪發電整合技術，將區域內廢棄物轉換成冷、熱、電等能源產品，能源轉換效率高，也能提供穩定的再生能源。
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
-                    </Grid>
+
                 </Grid>
             </Grid>
 
-            <Grid item width='100%' bgcolor='#F3F3F3' py={10}>
-                <Grid container maxWidth='lg' width='100%' mx='auto'>
-                    <Grid item xs={6}>
-                        <Typography variant='h5' color='secondary.main' mb={2.5} mt={4.5}>
-                        以分散式能資源中心深化運用<br />循環經濟模式遍地開花
-                        </Typography>
-                        <Typography variant='subtitle2' color='common.black'>
-                        TGRT的另一個優勢，在於提供區域型微型分散式能資源轉換中心的設置，讓廢棄物處理採用低環境衝擊的新型技術，不僅能分散在各鄉鎮市區域內，處理在地廢棄物去化問題，還能降低長途運送所增加的碳排放。同時，相較於以火力、核能發電場為主的集中式電網，每個微型分散式能資源中心二十四小時運作所產出的再生能源併網，又可以成為台灣電力穩定備載支撐，達成電業自由化符合區域微電網深化運用的未來。
-                        </Typography>
-                    </Grid>
-                    <Grid item xs={6}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-02.jpg`} alt="去中心化" srcSet="" />
-                    </Grid>
-                </Grid>
-            </Grid>
-
-
-            <Grid item width='100%' bgcolor='#F3F3F3' py={7.5} sx={{
+            <Grid item width='100%' bgcolor='#F3F3F3' py={7.5} mb={22.5} sx={{
                 position: 'relative',
                 '&::before': {
                     position: 'absolute',
@@ -149,18 +186,14 @@ export default function SolutionSection() {
                     width: '33%',
                     backgroundColor: '#FFFFFF'
                 }
-            }}
-            mb={22.5}
-            >
+            }}>
                 <Grid container maxWidth='lg' width='100%' mx='auto'>
                     <Grid item xs={6}>
-                        <Typography variant='h5' color='secondary.main' mb={2.5}>
-                        Aurelia® A400
-                        </Typography>
+                        <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleThird || 'Aurelia® A400'}</Typography>
                         <Typography variant='subtitle2' color='common.black'>
-                        因應現行的產業電力需求增加、供電備轉容量吃緊和故障引起的斷電事故，佳瑪環能引進與代理Aurelia® A400，可減少興建輸配電線所需之龐大投資與阻力，是最符合市場需求之動力發電系統。
+                        {contentThird[0] || '因應現行的產業電力需求增加、供電備轉容量吃緊和故障引起的斷電事故，佳瑪環能引進與代理Aurelia® A400，可減少興建輸配電線所需之龐大投資與阻力，是最符合市場需求之動力發電系統。'}
                         <br /><br />
-                        這是一款新型的400 kW微型燃氣渦輪發電機，具40.2%的能量轉換效率，比市面上的其他微渦輪機效率高出約20%，是目前最高效率的微渦輪機。能夠使用包括氫氣在內的多種可再生燃料和非標準燃料，運轉時污染極低、廢熱可充分再利用及體積小運轉維修容易。為小型燃氣渦輪機及柴油發電機組外，為最具發展潛力之緊急電源及小型分散型電源。
+                        {contentThird[1] || '這是一款新型的400 kW微型燃氣渦輪發電機，具40.2%的能量轉換效率，比市面上的其他微渦輪機效率高出約20%，是目前最高效率的微渦輪機。能夠使用包括氫氣在內的多種可再生燃料和非標準燃料，運轉時污染極低、廢熱可充分再利用及體積小運轉維修容易。為小型燃氣渦輪機及柴油發電機組外，為最具發展潛力之緊急電源及小型分散型電源。'}
                         </Typography>
                     </Grid>
                     <Grid item xs={5} ml='auto' zIndex={1}>

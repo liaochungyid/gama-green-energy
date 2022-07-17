@@ -1,11 +1,27 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
-import { Accordion, AccordionDetails, AccordionSummary, Grid, Typography } from "@mui/material";
+import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Typography } from "@mui/material";
+import { AppContext } from '@context/index';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { prefix } from '@utils/prefix';
 
 interface IFaq {q: string, a: string};
+interface IQAList {bgcolor: string; title: string; qaList: IFaq[]}
 
 export default function FaqSection() {
+    const { FaqSection } = React.useContext(AppContext);
+    const {
+        title,
+        subtitleFuel,
+        qaFuel,
+        subtitleTechnology,
+        qaTechnology,
+        subtitlePowGen,
+        qaPowGen,
+        subtitleApplication,
+        qaApplication
+    } = FaqSection;
+
     const inviewRef = useRef({} as HTMLDivElement);
 
     const options = {
@@ -27,7 +43,7 @@ export default function FaqSection() {
     const RenderFaq = ({q, a}: IFaq) => (
         <Grid item xs={12} mb={2}>
             <Accordion sx={{boxShadow: '0px 3px 16px rgba(0, 0, 0, 0.11)'}}>
-                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ '& .MuiAccordionSummary-content': {marginY: 0, paddingX: 2.375}, '& .Mui-expanded': {marginY: 0, paddingX: 2.375}}}>
+                <AccordionSummary expandIcon={<ExpandMoreIcon />} sx={{ '& .MuiAccordionSummary-content': {marginY: '0 !important', paddingX: '20px !important'} }}>
                     <Typography variant='subtitle1' color='secondary.main' my={3}>{q}</Typography>
                 </AccordionSummary>
                 <AccordionDetails sx={{backgroundColor: '#F3F3F3', padding: '24px 40px'}}>
@@ -37,22 +53,18 @@ export default function FaqSection() {
         </Grid>
     );
 
-    const faqList: IFaq[] = [{
-        q: '氣化技術(gasification technology)',
-        a: '是一種把煤炭、石油、生質物等含碳的原料，在控制氧氣量及高溫的條件下，轉換成甲烷、一氧化碳和氫氣的方法。GAMA通過控制物料在高於1000度的溫度下不完全燃燒，並與受控量的氧氣和/或水蒸氣發生反應，氣化過程中所產生的混合氣體稱為合成氣(syngas，又稱可燃氣)，其本身是一種廢棄物衍生燃料 RDF-7。'
-    }, {
-        q: '固體再生燃料(Solid recovered fuel, SRF)',
-        a: '指以具適燃性之廢棄物做為燃料，並須符合固體再生燃料品質標準者，稱為 SRF(Solid recovered fuel)，中文亦可稱為固體回收燃料、固體再利用燃料或固體再生燃料。'
-    }, {
-        q: '廢棄物衍生燃料(refuse derived fuel, RDF',
-        a: '指利用物理或熱化學等方法把將都市垃圾、一般事業廢棄物及農業廢棄物等廢棄物，藉由破碎、分選、乾燥、裂解、氣化及均質化等處理，轉化成性質均一的燃料 。依據廢棄物處理程序的不同，分為RDF-1~7個種類等級，燃料的種類等級越高，代表能量利用的效率愈高。'
-    }, {
-        q: '熱電聯產 (Cogeneration, combined heat and power, CHP)',
-        a: '在大多數單獨的電力生產中，不可能將所有的熱能轉換成電能，略多於一半的熱量將會成為廢熱，並通過冷卻塔或煙道氣等方式排放到自然環境中。'
-    }, {
-        q: '冷熱電聯產 (Combined Cooling Heating and Power, CCHP)',
-        a: 'GAMA運用能量梯級利用的概念，將發電過程、製冷及制熱一體化，其特點是將溫度較高具有較多可用熱能的廢熱用來發電，溫度較低具較少熱能的廢熱用來供熱或是製冷'
-    }];
+    const QAList = ({bgcolor, title, qaList}: IQAList ) => (
+        <Grid container justifyContent='center' columnSpacing={3}>
+            <Grid item xs={1} pb={2}>
+                <Box bgcolor={bgcolor} ml='auto' height='100%' width='50%' display='flex' sx={{alignItems: 'center', justifyContent: 'center'}}>
+                    <Typography variant='subtitle1' color='common.white'>{title}</Typography>
+                </Box>
+            </Grid>
+            <Grid item xs={7}>
+                {qaList.map(f => <RenderFaq key={f.q} {...f} />)}
+            </Grid>
+        </Grid>
+    );
 
     useInView(inviewRef, options, onEntry, onExit);
     return (
@@ -63,11 +75,20 @@ export default function FaqSection() {
                 }
             }}
         >
-            <Grid item maxWidth='lg' width='100%'>
-                <Typography variant='h2' color='secondary.main' textAlign='center' mb={7.5}>相關問答</Typography>
+            <Grid item xs={12} mb={10} sx={{
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/qa_bg.jpg)`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
+            }}>
+                <Typography variant='h2' color='info.main' textAlign='center' py={10}>{title || '相關問答'}</Typography>
+            </Grid>
 
-                {faqList.map(f => <RenderFaq key={f.q} {...f} />)}
-
+            <Grid item xs={12} maxWidth='xl'>
+                <QAList bgcolor='#0A5822' title={subtitleFuel || '燃料'} qaList={qaFuel} />
+                <QAList bgcolor='#13702F' title={subtitleTechnology || '技術'} qaList={qaTechnology} />
+                <QAList bgcolor='#1F8940' title={subtitlePowGen || '發電'} qaList={qaPowGen} />
+                <QAList bgcolor='#2DA351' title={subtitleApplication || '應用'} qaList={qaApplication} />
             </Grid>
         </Grid>
     )

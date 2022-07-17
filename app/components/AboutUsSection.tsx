@@ -115,6 +115,14 @@ export default function AboutUsSection() {
                         <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
                             <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%'}}/>
                         </Box>
+                        <Box position='absolute' width='100%' height='160px' sx={{
+                            top: 0,
+                            right: 0,
+                            backgroundImage: `url(${prefix}/images/gama_watermark.svg)`,
+                            backgroundRepeat: 'no-repeat',
+                            backgroundPositionX: 'right',
+                            transform: 'translate(calc(50vw - 50%),-100%)',
+                        }} />
                     </Grid>
                 </Grid>
             </Grid>

@@ -4,7 +4,6 @@ import CostEffectivenessSection from '@components/CostEffectivenessSection'
 import FaqSection from '@components/FaqSection'
 import FooterSection from '@components/FooterSection'
 import HeroSection from '@components/HeroSection'
-import LocaleServiceSection from '@components/LocaleServiceSection'
 import NavgationBar from '@components/NavgationBar'
 import NewAndMediaSection from '@components/NewAndMediaSection'
 import OurStrengthSection from '@components/OurStrengthSection'
@@ -46,7 +45,6 @@ const Home: NextPage = () => {
       <CostEffectivenessSection />
       <PracticalCaseSection />
       <OurStrengthSection />
-      <LocaleServiceSection />
       {/* <NewAndMediaSection /> */}
       <FaqSection />
       <PartnerSection />

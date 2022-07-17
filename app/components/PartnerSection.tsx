@@ -1,11 +1,18 @@
 import React, { useRef } from 'react';
 import useInView from '../utils/useInView';
 import { Box, Grid, Typography } from "@mui/material";
+import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 
 interface IPartner {imgPath: string, alt: string};
 
 export default function PartnerSection() {
+    const { PartnerSection } = React.useContext(AppContext);
+    const {
+        title,
+        titleDes
+    } = PartnerSection;
+
     const inviewRef = useRef({} as HTMLDivElement);
 
     const options = {
@@ -103,9 +110,9 @@ export default function PartnerSection() {
                 <Grid item maxWidth='xl' width='100%'>
                     <Grid container pl={15} spacing={7.25}>
                         <Grid item xs={6} display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
-                            <Typography variant='h2' color='info.main' mb={2.5}>合作夥伴</Typography>
+                            <Typography variant='h2' color='info.main' mb={2.5}>{title || '合作夥伴'}</Typography>
                             <Typography variant='subtitle2' color='common.white'>
-                            佳瑪環能整合產業上下游設備商，進行系統性結盟，發展國際團隊，協助各國維護環境及產業朝向永續的方向前進。因應未來趨勢與潮流，將導入 ERP、虛擬主機及雲端管理系統，同時整合各分散式微型能資源轉換中心的即時運轉數據及資料庫，進行智能化營運管理及產業大數據整合運用，以利系統效能優化及國際市場開拓領先優勢。
+                            {titleDes || '佳瑪環能整合產業上下游設備商，進行系統性結盟，發展國際團隊，協助各國維護環境及產業朝向永續的方向前進。因應未來趨勢與潮流，將導入 ERP、虛擬主機及雲端管理系統，整合各分散式微型能資源轉換中心即時的運轉數據及資料庫，進行智能化營運管理及產業大數據整合運用，以利系統效能優化及國際市場開拓領先優勢。'}
                             </Typography>
                         </Grid>
                         <Grid item xs={6}>
