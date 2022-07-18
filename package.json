@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next export",
-    "deploy": "rimraf -rf node_modules/.cache && set NODE_ENV=production && next build && next export && echo > ./out/.nojekyll && git add out/ -f && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages && set NODE_ENV="
+    "deploy": "rimraf -rf node_modules/.cache && set NODE_ENV=production && next build && next export && echo > ./out/.nojekyll && echo gama-green.tw > ./out/CNAME && git add out/ -f && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages && set NODE_ENV="
   },
   "dependencies": {
     "@emotion/react": "^11.9.3",
