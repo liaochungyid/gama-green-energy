@@ -170,10 +170,10 @@ export const AppState = {
         title: '聯繫我們',
         office: '桃園市中壢區青峰路一段35號4樓',
         plant: '桃園市大園區大觀路256號1樓',
-        phone: '(03) 381-9840',
-        fax: '(03) 280-4423',
+        phone: '+886-3-381-9840',
+        fax: '+886-3-280-4423',
         workHour: '09:00 - 18:00',
-        email: 'service@gama-green.com.tw',
+        email: 'service@gama-green.tw',
         cta: '使用電子郵件與我們聯繫'
     }
 };

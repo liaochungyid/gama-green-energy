@@ -14,11 +14,27 @@ import type { NextPage } from 'next'
 import axios from 'axios'
 import React from 'react'
 import GlobalStyle from 'theme/GlobalStyle';
+import AOS from 'aos';
 
 const Home: NextPage = () => {
   const [lang, setLang] = React.useState('zh');
   const [context, setContext] = React.useState({});
   const toggleLang = () => { setLang(prev => prev === 'zh' ? 'en' : 'zh'); };
+
+  const aosRefresh = () => AOS.refresh();
+
+  React.useEffect(() => {
+    AOS.init({
+      mirror: true,
+      duration: 600,
+      easing: 'ease-out',
+      offset: 60,
+    });
+
+    document.addEventListener('resize', aosRefresh);
+
+    return () => removeEventListener('resize', aosRefresh);
+  }, [])
 
   React.useEffect(() => {
     if (lang !== 'zh') {

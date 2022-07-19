@@ -1,5 +1,4 @@
-import React, { useRef } from 'react';
-import useInView from '../utils/useInView';
+import React from 'react';
 import { Box, Button, Grid, Typography } from "@mui/material";
 import PhoneIcon from '@mui/icons-material/Phone';
 import EmailIcon from '@mui/icons-material/Email';
@@ -10,6 +9,21 @@ import FactoryIcon from '@mui/icons-material/Factory';
 import IconArrowRight from '@icons/icons-arrow-left.svg';
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
+
+interface ICta {cta: string, email: string};
+
+const openInNewTab = (url: string) => {
+    const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
+    if (newWindow) newWindow.opener = null
+};
+
+const CtaButton = ({ cta, email }: ICta) => (
+    <Button variant='contained' color='success' 
+        sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} 
+        onClick={() => openInNewTab(`mailto:${email || 'service@gama-green.tw'}?subject=Hello&body=what you wanna ask us`)} 
+        endIcon={<IconArrowRight />}
+    >{cta || '使用電子郵件與我們聯繫'}</Button>
+);
 
 export default function FooterSection() {
     const { FooterSection } = React.useContext(AppContext);
@@ -23,50 +37,9 @@ export default function FooterSection() {
         email,
         cta
     } = FooterSection;
-
-    const inviewRef = useRef({} as HTMLDivElement);
-
-    const options = {
-        root : 'root',
-        rootMargin : '0px',
-        threshold : 0.5
-    };
-
-    function onEntry(entry: any) {
-        inviewRef.current.classList.add('visible');
-        // console.log('in: ', entry.intersectionRatio)
-    };
-  
-    function onExit(entry: any) {
-        inviewRef.current.classList.remove('visible');
-        // console.log('out: ', entry.intersectionRatio)
-    };
-
-    useInView(inviewRef, options, onEntry, onExit);
-
-    const openInNewTab = (url: string) => {
-        const newWindow = window.open(url, '_blank', 'noopener,noreferrer')
-        if (newWindow) newWindow.opener = null
-    };
-
-    const CtaButton = () => (
-        <Button variant='contained' color='success' 
-            sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} 
-            onClick={() => openInNewTab('mailto:service@gama-green.com.tw?subject=Hello&body=what you wanna ask us')} 
-            endIcon={<IconArrowRight />}
-        >{cta || '使用電子郵件與我們聯繫'}</Button>
-    );
-
     return (
         <React.Fragment>
-            <Grid id='contactUs' container justifyContent='center' alignItems='center' ref={inviewRef}
-                sx={{
-                    perspective: '100px',
-                    '&.visible': {
-                    }
-                }}
-                bgcolor='#07451A'
-            >
+            <Grid id='contactUs' container justifyContent='center' alignItems='center' bgcolor='#07451A'>
                 <Grid item maxWidth='xl' xs={12} sx={{
                     backgroundImage: `url(${prefix}/images/footer-map.png)`,
                     backgroundRepeat: 'no-repeat',
@@ -98,11 +71,11 @@ export default function FooterSection() {
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}}>
                                 <EmailIcon />
-                                <Typography variant='inherit' ml={3} component='span'>{email|| 'service@gama-green.com.tw'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{email || 'service@gama-green.com.tw'}</Typography>
                             </Typography>
                         </Grid>
                         <Grid item display={{sm: 'none'}} mx='auto'>
-                            <CtaButton />
+                            <CtaButton cta={cta} email={email} />
                         </Grid>
                         <Grid item xs={6} display={{xs: 'none', sm: 'flex'}} sx={{flexDirection: 'column', }}>
                             <Box mx='auto' mt='auto' sx={{
@@ -152,7 +125,7 @@ export default function FooterSection() {
                                 <div></div>
                                 <div></div>
                             </Box>
-                            <CtaButton />
+                            <CtaButton cta={cta} email={email} />
                         </Grid>
                     </Grid>
                 </Grid>

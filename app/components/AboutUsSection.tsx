@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import useInView from '../utils/useInView'
 import { Box, Grid, styled, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
@@ -41,34 +40,9 @@ export default function AboutUsSection() {
         contentFirstPara,
         contentSecondPara
     } = AboutUsSection.descriptionPart;
-    const inviewRef = useRef({} as HTMLDivElement);
 
-    const options = {
-        root : 'root',
-        rootMargin : '0px',
-        threshold : 0.5
-    };
-
-    function onEntry(entry: any) {
-        inviewRef.current.classList.add('visible');
-        // console.log('in: ', entry.intersectionRatio)
-    };
-  
-    function onExit(entry: any) {
-        inviewRef.current.classList.remove('visible');
-        // console.log('out: ', entry.intersectionRatio)
-    };
-
-    useInView(inviewRef, options, onEntry, onExit);
     return (
-        <Grid container justifyContent='center' alignItems='center' ref={inviewRef} mb={22.5}
-            sx={{
-                perspective: '100px',
-                '&.visible': {
-                }
-            }}
-            id='aboutUs'
-        >
+        <Grid data-aos="fade-up" container justifyContent='center' alignItems='center' mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} id='aboutUs'>
             <Grid item maxWidth='xl' width='100%' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                 <Grid container columnSpacing={6}>
                     <Grid item xs={12} sm={5} md={4} display={{xs: 'flex', sm: 'block'}} mb={{xs: 5, sm: 0}}>
@@ -125,7 +99,7 @@ export default function AboutUsSection() {
 
                     <Grid item xs={12} mt={10} ml={6} height='0' pb='56.25%' position='relative'>
                         <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
-                            <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%'}}/>
+                            <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%', playerVars: {rel: 0, modestbranding: 1}}}/>
                         </Box>
                         <Box position='absolute' width='100%' height='160px' sx={{
                             top: 0,

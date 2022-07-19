@@ -1,11 +1,35 @@
-import React, { useRef } from 'react';
-import useInView from '../utils/useInView'
+import React from 'react';
 import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 import theme from 'theme';
 
 interface AdvantageCardProps {title: string; description: string}
+
+const AdvantageCard = ({title, description}: AdvantageCardProps) => (
+    <Grid item xs={4} sm={3} data-aos="fade-left" minHeight={{xs: 150, sm: 180, md: 200}} bgcolor='#F3F3F3' mb={4} py={{xs: 2, sm: 3}} pl={4} pr={2} position='relative' sx={{
+        '&::before': {
+            content: '""',
+            position: 'absolute',
+            right: 0,
+            top: '35%',
+            height: '30%',
+            width: '2px',
+            backgroundColor: '#86D800'
+        }
+    }}>
+        <Typography variant='h2' color='info.light'>{title}</Typography>
+        <Typography variant='subtitle2' color='common.black'>{description}</Typography>
+        {(title === '07.' || title === '04.') && <Box sx={{
+            backgroundColor: '#F3F3F3',
+            position: 'absolute',
+            left: '100%',
+            top: 0,
+            width: '50vw',
+            height: '100%',
+        }} />}
+    </Grid>
+);
 
 export default function SolutionSection() {
     const { SolutionSection } = React.useContext(AppContext);
@@ -19,61 +43,10 @@ export default function SolutionSection() {
         subtitleThird,
         contentThird
     } = SolutionSection;
-    const inviewRef = useRef({} as HTMLDivElement);
-
-    const options = {
-        root : 'root',
-        rootMargin : '0px',
-        threshold : 0.5
-    };
-
-    function onEntry(entry: any) {
-        inviewRef.current.classList.add('visible');
-        // console.log('in: ', entry.intersectionRatio)
-    };
-  
-    function onExit(entry: any) {
-        inviewRef.current.classList.remove('visible');
-        // console.log('out: ', entry.intersectionRatio)
-    };
-
-    useInView(inviewRef, options, onEntry, onExit);
-
-    const AdvantageCard = ({title, description}: AdvantageCardProps) => (
-        <Grid item xs={4} sm={3} minHeight={{xs: 150, sm: 180, md: 200}} bgcolor='#F3F3F3' mb={4} py={{xs: 2, sm: 3}} pl={4} pr={2} position='relative' sx={{
-            '&::before': {
-                content: '""',
-                position: 'absolute',
-                right: 0,
-                top: '35%',
-                height: '30%',
-                width: '2px',
-                backgroundColor: '#86D800'
-            }
-        }}>
-            <Typography variant='h2' color='info.light'>{title}</Typography>
-            <Typography variant='subtitle2' color='common.black'>{description}</Typography>
-            {(title === '07.' || title === '04.') && <Box sx={{
-                backgroundColor: '#F3F3F3',
-                position: 'absolute',
-                left: '100%',
-                top: 0,
-                width: '50vw',
-                height: '100%',
-            }} />}
-        </Grid>
-    );
 
     return (
-        <Grid id='solution' container justifyContent='center' alignItems='center' ref={inviewRef}
-            sx={{
-                overflow: 'hidden',
-                perspective: '100px',
-                '&.visible': {
-                }
-            }}
-        >
-            <Grid item width='100%' bgcolor='#050607' mb={7.5}>
+        <Grid id='solution' container justifyContent='center' alignItems='center' overflow='hidden'>
+            <Grid item width='100%' bgcolor='#050607' data-aos="fade-up" mb={7.5}>
                 <Grid container justifyContent='center'>
                     <Grid item maxWidth='xl' width='100%' my='auto' sx={{
                         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/solution_bg.jpg)`,
@@ -98,12 +71,12 @@ export default function SolutionSection() {
             
             <Grid item maxWidth='xl' mb={7.5}>
                 <Grid container>
-                    <Grid item xs={12} px={{xs: 1, sm: 2, md: 4, lg: 8}}>
+                    <Grid item xs={12} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Typography variant='h5' color='secondary.main' mb={5}>
                             {subtitleFirst || '佳瑪環能的氣化技術具有下列的優點'}
                         </Typography>
                     </Grid>
-                    <Grid item xs={12} position='relative'>
+                    <Grid item xs={12} position='relative' data-aos="fade-up">
                         <Grid container justifyContent='flex-end'>
                             {contentFirst.map((c, i) => <AdvantageCard key={c} title={`0${i+1}.`} description={c} />)}
                         </Grid>
@@ -120,7 +93,7 @@ export default function SolutionSection() {
                         }} />
                     </Grid>
 
-                    <Grid item xs={12} mb={10} px={{xs: 1, sm: 2, md: 4, lg: 8}}>
+                    <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Grid container alignItems='center' flexDirection={{xs: 'column', sm: 'row'}}>
                             <Grid item xs={12} sm={5} md={4}>
                                 <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleSecond || '以分散式能資源中心深化運用循環經濟模式遍地開花'}</Typography>
@@ -132,7 +105,7 @@ export default function SolutionSection() {
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={12} mb={10} px={{xs: 1, sm: 2, md: 4, lg: 8}}>
+                    <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Grid container alignItems='center' flexDirection={{xs: 'column-reverse', sm: 'row'}}>
                             <Grid item xs={12} sm={5} py={{xs: 2, sm: 0}} px={{xs: 6, sm: 2, md: 0}}>
                                 <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
@@ -147,7 +120,7 @@ export default function SolutionSection() {
                         </Grid>
                     </Grid>
 
-                    <Grid item xs={12} mb={10}>
+                    <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} data-aos="fade-up">
                         <Grid container alignItems='center'>
                             <Grid item xs={12} sm={6} py={{xs: 4, sm: 6, md: 8, lg: 10}} pl={{xs: 1, sm: 2, md: 4, lg: 8}} pr={{xs: 2, sm: 4, md: 8, lg: 15}} bgcolor='#07451A' position='relative' sx={{
                                 '&::before': {
@@ -179,7 +152,7 @@ export default function SolutionSection() {
                 </Grid>
             </Grid>
 
-            <Grid item width='100%' bgcolor='#F3F3F3' py={7.5} mb={22.5} sx={{
+            <Grid data-aos="fade-up" item width='100%' bgcolor='#F3F3F3' py={7.5} mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} sx={{
                 position: 'relative',
                 '&::before': {
                     [theme.breakpoints.down('sm')]: {

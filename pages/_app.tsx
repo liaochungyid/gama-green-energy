@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from '@mui/material'
 import { prefix } from '@utils/prefix'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import Script from 'next/script'
 import theme from 'theme'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -30,6 +31,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="twitter:image:alt" content="Gama Green Energy" />
         <meta name="theme-color" content="#000000" />
         <link rel="icon" href={`${prefix}/favicon.ico`} />
+        <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
       </Head>
       <CssBaseline />
       <Component {...pageProps} />

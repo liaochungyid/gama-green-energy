@@ -1,11 +1,57 @@
-import React, { useRef } from 'react';
-import useInView from '../utils/useInView';
+import React from 'react';
 import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 import YouTube from 'react-youtube';
 
 interface StyledHoverBoxType {title: string};
+
+const StyledHoverBox = ({title}: StyledHoverBoxType) => (
+    <Box position='absolute' display='flex' sx={{
+        justifyContent: 'center',
+        alignItems: 'center',
+        top: 0,
+        bottom: 0,
+        left: 0,
+        right: 0,
+        transition: 'all 0.3s ease-in-out',
+        '& h5': {
+            transition: 'all 0.3s linear',
+            transform: 'translateY(100%)',
+            opacity: 0,
+        },
+        '& ::after': {
+            transition: 'all 0.3s linear',
+            transform: 'scaleX(0)'
+        },
+        ':hover': {
+            background: 'rgba(0, 0, 0, 0.7)',
+            '& h5': {
+                transform: 'translateY(50%)',
+                opacity: 1,
+            },
+            '& ::after': {
+                transform: 'scaleX(1)'
+            }
+        }
+    }}>
+        <Typography variant='h5' color='info.main' position='relative' sx={{
+            paddingBottom: '10px',
+            overflow: 'hidden',
+            paddingX: 3,
+            '&::after': {
+                content: '""',
+                position: 'absolute',
+                bottom: 0,
+                left: 0,
+                width: '100%',
+                height: '1px',
+                overflow: 'hidden',
+                backgroundColor: '#51FE28'
+            }
+        }}>{title}</Typography>
+    </Box>
+);
 
 export default function PracticalCaseSection() {
     const { PracticalCaseSection } = React.useContext(AppContext);
@@ -20,84 +66,9 @@ export default function PracticalCaseSection() {
         picGridSubtitle
     } = PracticalCaseSection;
 
-    const inviewRef = useRef({} as HTMLDivElement);
-
-    const options = {
-        root : 'root',
-        rootMargin : '0px',
-        threshold : 0.5
-    };
-
-    function onEntry(entry: any) {
-        // inviewRef.current.classList.add('visible');
-        // console.log('in: ', entry.intersectionRatio)
-    };
-  
-    function onExit(entry: any) {
-        // inviewRef.current.classList.remove('visible');
-        // console.log('out: ', entry.intersectionRatio)
-    };
-
-    useInView(inviewRef, options, onEntry, onExit);
-
-    const StyledHoverBox = ({title}: StyledHoverBoxType) => (
-        <Box position='absolute' display='flex' sx={{
-            justifyContent: 'center',
-            alignItems: 'center',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            transition: 'all 0.3s ease-in-out',
-            '& h5': {
-                transition: 'all 0.3s linear',
-                transform: 'translateY(100%)',
-                opacity: 0,
-            },
-            '& ::after': {
-                transition: 'all 0.3s linear',
-                transform: 'scaleX(0)'
-            },
-            ':hover': {
-                background: 'rgba(0, 0, 0, 0.7)',
-                '& h5': {
-                    transform: 'translateY(50%)',
-                    opacity: 1,
-                },
-                '& ::after': {
-                    transform: 'scaleX(1)'
-                }
-            }
-        }}>
-            <Typography variant='h5' color='info.main' position='relative' sx={{
-                paddingBottom: '10px',
-                overflow: 'hidden',
-                paddingX: 3,
-                '&::after': {
-                    content: '""',
-                    position: 'absolute',
-                    bottom: 0,
-                    left: 0,
-                    width: '100%',
-                    height: '1px',
-                    overflow: 'hidden',
-                    backgroundColor: '#51FE28'
-                }
-            }}>{title}</Typography>
-        </Box>
-    )
-
-
     return (
-        <Grid id='showcase' container justifyContent='center' alignItems='center' ref={inviewRef}
-            sx={{
-                perspective: '100px',
-                '&.visible': {
-                }
-            }}
-            overflow='hidden'
-        >
-            <Grid item xs={12} bgcolor='#050607' mb={10}>
+        <Grid id='showcase' container justifyContent='center' alignItems='center' overflow='hidden' >
+            <Grid item xs={12} bgcolor='#050607' mb={10} data-aos="fade-up">
                 <Grid container justifyContent='center' mx='auto' maxWidth='xl' sx={{
                         backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/service-04.jpg)`,
                         backgroundRepeat: 'no-repeat',
@@ -122,13 +93,13 @@ export default function PracticalCaseSection() {
                 <Grid container maxWidth='xl' mx='auto' justifyContent='center'>
                     <Grid item xs={10} height='0' pb='56.25%' position='relative'>
                         <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
-                            <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%'}}/>
+                            <YouTube videoId='STVhhP6pmms' title='環保局稻稈計畫' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%', playerVars: {rel: 0, modestbranding: 1}}}/>
                         </Box>
                     </Grid>
                 </Grid>
             </Grid>
 
-            <Grid item xs={12} mb={22.5} py={10} px={{xs: 1, sm: 2, md: 4, lg: 8}} bgcolor='#F3F3F3'>
+            <Grid item xs={12} mb={22.5} py={10} px={{xs: 1, sm: 2, md: 4, lg: 8}} bgcolor='#F3F3F3' data-aos="fade-up">
                 <Grid container maxWidth='xl' mx='auto' alignItems='center'>
                     <Grid item xs={6} display={{xs: 'none', sm: 'block'}}>
                         <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
@@ -148,7 +119,7 @@ export default function PracticalCaseSection() {
                 </Grid>
             </Grid>
 
-            <Grid item xs={12} mb={20}>
+            <Grid item xs={12} mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} data-aos="fade-up">
                 <Grid container maxWidth='xl' mx='auto' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                     <Grid item xs={12} pb={5}>
                         <Typography variant='h2' color='secondary.main' mb={2.5}>{subtitleThird || '案場現況'}</Typography>

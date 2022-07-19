@@ -1,10 +1,15 @@
-import React, { useRef } from 'react';
-import useInView from '../utils/useInView';
+import React from 'react';
 import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 
 interface IPartner {imgPath: string, alt: string};
+
+const RenderPartnerLogo = ({imgPath, alt}: IPartner) => (
+    <Box width={120} height={120} display='inline-block' mr='24px'>
+        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={prefix + imgPath} alt={alt} srcSet="" />
+    </Box>
+);
 
 export default function PartnerSection() {
     const { PartnerSection } = React.useContext(AppContext);
@@ -13,25 +18,7 @@ export default function PartnerSection() {
         titleDes
     } = PartnerSection;
 
-    const inviewRef = useRef({} as HTMLDivElement);
-
-    const options = {
-        root : 'root',
-        rootMargin : '0px',
-        threshold : 0.5
-    };
-
-    function onEntry(entry: any) {
-        inviewRef.current.classList.add('visible');
-        // console.log('in: ', entry.intersectionRatio)
-    };
-  
-    function onExit(entry: any) {
-        inviewRef.current.classList.remove('visible');
-        // console.log('out: ', entry.intersectionRatio)
-    };
-
-    const sliderRef = useRef({} as HTMLDivElement);
+    const sliderRef = React.useRef({} as HTMLDivElement);
 
     const handleSlider = () => {
         if (sliderRef.current) {
@@ -47,13 +34,7 @@ export default function PartnerSection() {
     React.useEffect(() => {
         const silederInterval = setInterval(() => { handleSlider() }, 20);
         return () => clearInterval(silederInterval);
-    }, [])
-
-    const RenderPartnerLogo = ({imgPath, alt}: IPartner) => (
-        <Box width={120} height={120} display='inline-block' mr='24px'>
-            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={prefix + imgPath} alt={alt} srcSet="" />
-        </Box>
-    );
+    }, []);
 
     const partnerList: IPartner[] = [{
         imgPath: '/images/logo-01.png',
@@ -96,17 +77,9 @@ export default function PartnerSection() {
         alt: '三生農機'
     }];
 
-    useInView(inviewRef, options, onEntry, onExit);
     return (
         <React.Fragment>
-            <Grid container justifyContent='center' alignItems='center' ref={inviewRef} mb={7.5}
-                sx={{
-                    perspective: '100px',
-                    '&.visible': {
-                    }
-                }}
-                bgcolor='#07451A'
-            >
+            <Grid container justifyContent='center' alignItems='center' mb={7.5} bgcolor='#07451A'>
                 <Grid item maxWidth='xl' width='100%'>
                     <Grid container pl={{xs: 2, sm: 4, md: 8, lg: 15}} pr={{xs: 2, sm: 0}} spacing={{xs: 0, sm: 2, md: 4 ,lg: 7.25}}>
                         <Grid item xs={12} sm={6} display='flex' sx={{flexDirection: 'column', justifyContent: 'center'}}>
