@@ -11,18 +11,18 @@ const StyledBox = styled(Box)({
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: '20px 90px',
+    padding: '20px 72px',
     [theme.breakpoints.down('xl')]: {
-        padding: '40px 72px'
+        padding: '40px 56px'
     },
     [theme.breakpoints.down('lg')]: {
-        padding: '32px 56px'
+        padding: '32px 40px'
     },
     [theme.breakpoints.down('md')]: {
-        padding: '28px 40px'
+        padding: '28px 32px'
     },
     [theme.breakpoints.down('sm')]: {
-        padding: '20px 20px'
+        padding: '20px 16px'
     },
     backgroundRepeat: 'no-repeat',
     backgroundPosition: 'center',
@@ -44,7 +44,7 @@ export default function AboutUsSection() {
     return (
         <Grid data-aos="fade-up" container justifyContent='center' alignItems='center' mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} id='aboutUs'>
             <Grid item maxWidth='xl' width='100%' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
-                <Grid container columnSpacing={6}>
+                <Grid container columnSpacing={6} justifyContent='center'>
                     <Grid item xs={12} sm={5} md={4} display={{xs: 'flex', sm: 'block'}} mb={{xs: 5, sm: 0}}>
                         <StyledBox
                             sx={{
@@ -97,7 +97,7 @@ export default function AboutUsSection() {
                         </Typography>
                     </Grid>
 
-                    <Grid item xs={12} mt={10} ml={6} height='0' pb='56.25%' position='relative'>
+                    <Grid item xs={10} mt={10} ml={6} height='0' pb='46.875%' position='relative'>
                         <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
                             <YouTube videoId='ZCs2cxPf8WA' title='生質能源循環' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%', playerVars: {rel: 0, modestbranding: 1}}}/>
                         </Box>

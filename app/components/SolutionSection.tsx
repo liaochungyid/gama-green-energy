@@ -3,6 +3,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 import theme from 'theme';
+import YouTube from 'react-youtube';
 
 interface AdvantageCardProps {title: string; description: string}
 
@@ -96,7 +97,10 @@ export default function SolutionSection() {
                     <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Grid container alignItems='center' flexDirection={{xs: 'column', sm: 'row'}}>
                             <Grid item xs={12} sm={5} md={4}>
-                                <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleSecond || '以分散式能資源中心深化運用循環經濟模式遍地開花'}</Typography>
+                                <Typography variant='h5' color='secondary.main' mb={2.5}>
+                                    {subtitleSecond[0] || '以分散式能資源中心深化運用'}<br />
+                                    {subtitleSecond[1] || '循環經濟模式遍地開花'}
+                                </Typography>
                                 <Typography variant='subtitle2' color='common.black'>{contentSecond[0] || '垃圾處理一直是各城市的大議題，目前台灣的焚化爐大多採用三、四十年前的焚化技術，每日處理約一千噸混雜垃圾，對於環境的衝擊性相對大。加上一般焚化廠使用年限為二十年，隨著台灣多數垃圾焚化廠使用年限屆滿，須面對廢棄物的去化。'}</Typography>
                             </Grid>
                             <Grid item xs={12} sm={7} md={8}>
@@ -171,7 +175,7 @@ export default function SolutionSection() {
                     <Grid item xs={12} sm={6}>
                         <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleThird || 'Aurelia® A400'}</Typography>
                         <Box display={{xs: 'block', sm: 'none'}} px={4}>
-                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.jpg`} alt="Aurelia A400" srcSet="" />
+                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
                         </Box>
                         <Typography variant='subtitle2' color='common.black'>
                         {contentThird[0] || '因應現行的產業電力需求增加、供電備轉容量吃緊和故障引起的斷電事故，佳瑪環能引進與代理Aurelia® A400，可減少興建輸配電線所需之龐大投資與阻力，是最符合市場需求之動力發電系統。'}
@@ -180,7 +184,17 @@ export default function SolutionSection() {
                         </Typography>
                     </Grid>
                     <Grid item xs={5} display={{xs: 'none', sm: 'block'}} ml='auto' zIndex={1}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.jpg`} alt="Aurelia A400" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
+                    </Grid>
+                </Grid>
+                    
+                <Grid item xs={12} mt={6}>
+                    <Grid container mx='auto' justifyContent='center'>
+                        <Grid item xs={10} height='0' pb='56.25%' position='relative'>
+                            <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
+                                <YouTube videoId='O-lvJtYNPXM' title='Aurelia Turbines introduction of the new turbine' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%', playerVars: {rel: 0, modestbranding: 1}}}/>
+                            </Box>
+                        </Grid>
                     </Grid>
                 </Grid>
             </Grid>

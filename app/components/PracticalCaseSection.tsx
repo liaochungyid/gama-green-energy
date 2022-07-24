@@ -91,7 +91,7 @@ export default function PracticalCaseSection() {
 
             <Grid item xs={12} mb={10}>
                 <Grid container maxWidth='xl' mx='auto' justifyContent='center'>
-                    <Grid item xs={10} height='0' pb='56.25%' position='relative'>
+                    <Grid item xs={10} height='0' pb='46.875%' position='relative'>
                         <Box position='absolute' sx={{top: 0, bottom: 0, left: 0, right: 0}}>
                             <YouTube videoId='STVhhP6pmms' title='環保局稻稈計畫' style={{width: '100%', height: '100%'}} opts={{width: '100%', height: '100%', playerVars: {rel: 0, modestbranding: 1}}}/>
                         </Box>

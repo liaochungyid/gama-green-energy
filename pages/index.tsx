@@ -5,7 +5,6 @@ import FaqSection from '@components/FaqSection'
 import FooterSection from '@components/FooterSection'
 import HeroSection from '@components/HeroSection'
 import NavgationBar from '@components/NavgationBar'
-import NewAndMediaSection from '@components/NewAndMediaSection'
 import OurStrengthSection from '@components/OurStrengthSection'
 import PartnerSection from '@components/PartnerSection'
 import PracticalCaseSection from '@components/PracticalCaseSection'
@@ -25,13 +24,15 @@ const Home: NextPage = () => {
 
   React.useEffect(() => {
     AOS.init({
-      mirror: true,
       duration: 600,
       easing: 'ease-out',
       offset: 60,
     });
 
     document.addEventListener('resize', aosRefresh);
+    if (!navigator?.languages.includes('zh')) {
+      setLang('en')
+    }; 
 
     return () => removeEventListener('resize', aosRefresh);
   }, [])
@@ -51,10 +52,10 @@ const Home: NextPage = () => {
     } else {
       setContext({})
     }
-  }, [lang])
+  }, [lang]);
 
   return (
-    <AppContext.Provider value={{...AppState, ...context, toggleLang}}>
+    <AppContext.Provider value={{...AppState, ...context, lang, toggleLang}}>
       {GlobalStyle}
       <NavgationBar />
       <HeroSection />
