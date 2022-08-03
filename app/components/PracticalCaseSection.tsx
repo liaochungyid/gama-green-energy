@@ -110,7 +110,7 @@ export default function PracticalCaseSection() {
                             <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
                         </Box>
                         <Typography variant='subtitle2' color='common.black'>
-                        {contentSecond[0] || '佳瑪環能初期經營目標為完成桃園市大園區大觀路256號第一期400Kw發電量之設備建置，未來將以1,200Kw 為目標並以桃園首座微型能資源處理中心，協助解決生質廢棄物及電力不足問題。'}
+                        {contentSecond[0] || '佳瑪環能初期經營目標為完成桃園市大園區大觀路256號第一期400kW發電量之設備建置，未來將以1,200kW 為目標並以桃園首座微型能資源處理中心，協助解決生質廢棄物及電力不足問題。'}
                         <br /><br />
                         {contentSecond[1] || '廢棄物處理流程主要以廢塑膠、廢木材等廢棄物為原料，透過破碎篩分系統完成前處理，經過適當物料配比後進入氣化爐產生合成氣，供給微渦輪機燃燒可燃氣發電，發電後之餘熱尚可經過溴冷機產生冷氣，供應全廠使用。'}
                         </Typography>

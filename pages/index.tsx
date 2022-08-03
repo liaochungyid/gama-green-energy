@@ -18,9 +18,9 @@ import AOS from 'aos';
 const Home: NextPage = () => {
   const [lang, setLang] = React.useState('zh');
   const [context, setContext] = React.useState({});
-  const toggleLang = () => { setLang(prev => prev === 'zh' ? 'en' : 'zh'); };
+  const toggleLang = React.useCallback(() => { setLang(prev => prev === 'zh' ? 'en' : 'zh'); }, []);
 
-  const aosRefresh = () => AOS.refresh();
+  const aosRefresh = React.useCallback(() => AOS.refresh(), []);
 
   React.useEffect(() => {
     AOS.init({

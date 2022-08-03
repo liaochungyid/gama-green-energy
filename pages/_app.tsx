@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Gama Green Engergy</title>
+        <title>佳瑪環能科技 | Gama Green Engergy</title>
         <meta name="description" content="佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(MTG)轉換成電力提供穩定的再生能源" />
         <meta name="author" content="FE Lyle, DESIGN Chloe" />
         <meta property="og:url" content="index.html" />
