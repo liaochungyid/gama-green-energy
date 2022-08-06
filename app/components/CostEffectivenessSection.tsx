@@ -11,6 +11,7 @@ export default function CostEffectivenessSection() {
     const {
         title,
         titleDes,
+        stage,
         listDescription
     } = CostEffectivenessSection;
 
@@ -23,7 +24,7 @@ export default function CostEffectivenessSection() {
                         <Typography variant='subtitle2' color='common.black'>{titleDes || 'GAMA 佳瑪環能第一期將建置 400kW之發電設備一年最大發電量約為320萬度，依能源局最公布之109年度電力排碳係數0.502公斤CO2e換算，一年約可減少1,600公噸CO2排放，約為160公頃造林效益(6.25座大安森林公園)。此外GAMA佳瑪環能發電是採用回收生質廢棄物中的能量，第一期估算可以協助處理約2,000公噸/年的廢棄物，並由收取廢棄物處理費及躉售台電獲得收益。'}</Typography>
                     </Grid>
                     <Grid item xs={12} data-aos="fade-up">
-                        <Typography variant='h5' textAlign='center' color='secondary.main' mb={2.5}>{'第一期' || '第一期'}</Typography>
+                        <Typography variant='h5' textAlign='center' color='secondary.main' mb={2.5}>{stage[0] || '第一期'}</Typography>
                         <Grid container>
                             <Grid item xs={3} height='200px' bgcolor='#07451A' display='flex' sx={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <IconFire />
@@ -46,7 +47,7 @@ export default function CostEffectivenessSection() {
                                 <Typography variant='subtitle2' color='common.white'>{listDescription[3] || '廢棄物量體'}</Typography>
                             </Grid>
                         </Grid>
-                        <Typography variant='h5' textAlign='center' color='secondary.main' mt={5} mb={2.5}>{'第二期' || '第二期'}</Typography>
+                        <Typography variant='h5' textAlign='center' color='secondary.main' mt={5} mb={2.5}>{stage[1] || '第二期'}</Typography>
                         <Grid container>
                             <Grid item xs={3} height='200px' bgcolor='#07451A' display='flex' sx={{flexDirection: 'column', alignItems: 'center', justifyContent: 'center'}}>
                                 <IconFire />

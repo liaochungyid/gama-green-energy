@@ -96,15 +96,12 @@ export default function SolutionSection() {
 
                     <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Grid container alignItems='center' flexDirection={{xs: 'column', sm: 'row'}}>
-                            <Grid item xs={12} sm={5} md={4}>
+                            <Grid item xs={12}>
                                 <Typography variant='h5' color='secondary.main' mb={2.5}>
                                     {subtitleSecond[0] || '以分散式能資源中心深化運用'}<br />
                                     {subtitleSecond[1] || '循環經濟模式遍地開花'}
                                 </Typography>
                                 <Typography variant='subtitle2' color='common.black'>{contentSecond[0] || '垃圾處理一直是各城市的大議題，目前台灣的焚化爐大多採用三、四十年前的焚化技術，每日處理約一千噸混雜垃圾，對於環境的衝擊性相對大。加上一般焚化廠使用年限為二十年，隨著台灣多數垃圾焚化廠使用年限屆滿，須面對廢棄物的去化。'}</Typography>
-                            </Grid>
-                            <Grid item xs={12} sm={7} md={8}>
-                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-01.jpg`} alt="設備流程" srcSet="" />
                             </Grid>
                         </Grid>
                     </Grid>
