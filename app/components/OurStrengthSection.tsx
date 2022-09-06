@@ -13,11 +13,9 @@ const CardItem = ({imgpath, icon, title, titleDes}: CardItemProps) => (
         <Card sx={{backgroundColor: '#07451A', borderRadius: 0, height: '100%'}}>
             <CardMedia component='img' height={230} image={imgpath} alt={title} />
             <CardContent sx={{padding: '24px 24px 48px !important'}}>
-                <>
-                    {icon}
-                    <Typography variant='h5' my={2.5} color='common.white'>{title}</Typography>
-                    <Typography variant='body1' color='common.white'>{titleDes}</Typography>
-                </>
+                {icon}
+                <Typography variant='h5' my={2.5} color='common.white'>{title}</Typography>
+                <Typography variant='body1' color='common.white'>{titleDes}</Typography>
             </CardContent>
         </Card>
     </Grid>

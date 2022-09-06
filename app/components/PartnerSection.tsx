@@ -3,10 +3,10 @@ import { Box, Grid, Typography } from "@mui/material";
 import { AppContext } from '@context/index';
 import { prefix } from '@utils/prefix';
 
-interface IPartner {imgPath: string, alt: string};
+interface IPartner {imgPath: string, alt: string, ratio: number};
 
-const RenderPartnerLogo = ({imgPath, alt}: IPartner) => (
-    <Box width={120} height={120} display='inline-block' mr='24px'>
+const RenderPartnerLogo = ({imgPath, alt, ratio}: IPartner) => (
+    <Box width={120 * ratio} height={120} display='inline-block' mr='24px'>
         <img width='100%' height='100%' style={{objectFit: 'contain'}} src={prefix + imgPath} alt={alt} srcSet="" />
     </Box>
 );
@@ -20,7 +20,7 @@ export default function PartnerSection() {
 
     const sliderRef = React.useRef({} as HTMLDivElement);
 
-    const handleSlider = () => {
+    const handleSlider = React.useCallback(() => {
         if (sliderRef.current) {
             const prev = Number(sliderRef.current.style.left.replace('px', ''));
             if (prev <= -(120 + 24) * partnerList.length) {
@@ -29,7 +29,7 @@ export default function PartnerSection() {
                 sliderRef.current.style.left = `${prev - 1}px`            
             }
         }
-    };
+    }, []);
     
     React.useEffect(() => {
         const silederInterval = setInterval(() => { handleSlider() }, 20);
@@ -38,43 +38,60 @@ export default function PartnerSection() {
 
     const partnerList: IPartner[] = [{
         imgPath: '/images/logo-01.png',
-        alt: 'TGRT'
+        alt: 'TGRT',
+        ratio: 1
     }, {
         imgPath: '/images/logo-02.png',
-        alt: 'Aurelia'
+        alt: 'Aurelia',
+        ratio: 1
     }, {
         imgPath: '/images/logo-03.png',
-        alt: 'SunForce'
+        alt: 'SunForce',
+        ratio: 1
     }, {
         imgPath: '/images/logo-04.png',
-        alt: 'adicomp'
+        alt: 'adicomp',
+        ratio: 1
     }, {
         imgPath: '/images/logo-05.png',
-        alt: 'AcroRed Technologies, Inc'
+        alt: 'AcroRed Technologies, Inc',
+        ratio: 1
     }, {
         imgPath: '/images/logo-06.png',
-        alt: 'EPICOR'
+        alt: 'EPICOR',
+        ratio: 1
     }, {
         imgPath: '/images/logo-07.png',
-        alt: 'HUAHUA SHIN'
+        alt: 'HUAHUA SHIN',
+        ratio: 1
     }, {
         imgPath: '/images/logo-08.png',
-        alt: 'iisi'
+        alt: 'iisi',
+        ratio: 1
     }, {
         imgPath: '/images/logo-09.png',
-        alt: '金茂榮'
+        alt: '金茂榮',
+        ratio: 1
     }, {
         imgPath: '/images/logo-10.png',
-        alt: '科泰豐'
+        alt: '科泰豐',
+        ratio: 1
     }, {
         imgPath: '/images/logo-11.png',
-        alt: '昇泰能源'
+        alt: '昇泰能源',
+        ratio: 1
     }, {
         imgPath: '/images/logo-12.png',
-        alt: '綠美地'
+        alt: '綠美地',
+        ratio: 1
     }, {
         imgPath: '/images/logo-13.png',
-        alt: '三生農機'
+        alt: '三生農機',
+        ratio: 1
+    }, {
+        imgPath: '/images/logo-14.png',
+        alt: '頌欣機械',
+        ratio: 2
     }];
 
     return (
@@ -96,6 +113,7 @@ export default function PartnerSection() {
             </Grid>
             <Grid container justifyContent='center' alignItems='center' mb={15}>
                 <Grid item maxWidth='xl' width='100%' position='relative' overflow='hidden' height={120}>
+                {/* <Grid item maxWidth='xl'> */}
                     <Box ref={sliderRef} position='absolute' sx={{top: 0, left: 0}} width={2 * (120 + 24) * partnerList.length} overflow='hidden'>
                         {partnerList.map(p => <RenderPartnerLogo key={p.alt} {...p} />)}
                         {partnerList.map(p => <RenderPartnerLogo key={p.imgPath} {...p} />)}
