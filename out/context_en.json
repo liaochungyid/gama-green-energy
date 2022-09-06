@@ -73,6 +73,7 @@
     "CostEffectivenessSection": {
         "title": "Cost-effectiveness",
         "titleDes": "The first phase of GAMA will build a 400kW power generation equipment with a maximum annual power generation capacity of about 3.2 million kWh. equal to the 109 annual electricity carbon emission coefficients by 0.502 kg CO2e published by the Energy Bureau, about 1,600 metric tons of CO2 emissions can be reduced in one year, which is about 160 hectares of afforestation benefits (6.25 sets of Daan Forest Parks). In addition, GAMA Power Generation uses the energy recovered from biomass waste. It is estimated that the first phase can assist in the treatment of about 2,000 metric tons of waste per year, and the revenue will be obtained by collecting waste treatment fees and sales power to utility company (Taipower).",
+        "stage": ["Stage 1", "Stage 2"],
         "listDescription": [
             "Power Generated",
             "Annual Power Generation",
@@ -89,7 +90,7 @@
             "The initial business goal of GAMA is to complete the construction of the first-phase 400Kw power generation equipment in Taoyuan City. In the future, it will target 1,200Kw and use Taoyuan's first micro energy resource processing center to help solve the problem of biomass waste and power shortage.",
             "The waste treatment process mainly uses waste plastics, waste wood and other wastes as raw materials, and completes pre-treatment through a crushing and screening system.After the material is properly proportioned, it enters the gasifier to generate syngas, which is supplied to the micro-turbine to burn the combustible gas to generate electricity."
         ],
-        "subtitleThird": "Case condition",
+        "subtitleThird": "Installation reference",
         "contentThird": "GAMA gasification power plant",
         "picGridSubtitle": [
             "Gasifier main part",
@@ -159,7 +160,7 @@
     },
     "FooterSection": {
         "title": "Contact Us",
-        "office": "No. 256, Daguan Rd, Dayuan District, Taoyuan City, 337, Taiwan, R.O.C.",
+        "office": "4F., No. 35, Section 1, Qingfeng Rd, Zhongli District, Taoyuan City, 320",
         "plant": "No. 256, Daguan Rd, Dayuan District, Taoyuan City, 337, Taiwan, R.O.C.",
         "phone": "+886-3-381-9840",
         "fax": "+886-3-280-4423",
