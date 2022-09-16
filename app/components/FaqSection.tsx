@@ -1,8 +1,7 @@
 import React from 'react';
 import { Accordion, AccordionDetails, AccordionSummary, Box, Grid, Typography } from "@mui/material";
-import { AppContext } from '@context/index';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { prefix } from '@utils/prefix';
+import { IFaqSection } from 'types';
 
 interface IFaq {q: string, a: string};
 interface IQAList {bgcolor: string; title: string; qaList: IFaq[]};
@@ -33,8 +32,7 @@ const QAList = ({bgcolor, title, qaList}: IQAList ) => (
     </Grid>
 );
 
-export default function FaqSection() {
-    const { FaqSection } = React.useContext(AppContext);
+export default function FaqSection({ CFaqSection }: {CFaqSection: IFaqSection}) {
     const {
         title,
         subtitleFuel,
@@ -45,24 +43,24 @@ export default function FaqSection() {
         qaPowGen,
         subtitleApplication,
         qaApplication
-    } = FaqSection;
+    } = CFaqSection;
 
     return (
         <Grid id='faq' container justifyContent='center' alignItems='center' mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} data-aos="fade-up">
             <Grid item xs={12} mb={10} sx={{
-                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/qa_bg.jpg)`,
+                backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/qa_bg.jpg)`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
             }}>
-                <Typography variant='h2' color='info.main' textAlign='center' py={10}>{title || '相關問答'}</Typography>
+                <Typography variant='h2' color='info.main' textAlign='center' py={10}>{title}</Typography>
             </Grid>
 
             <Grid item xs={12} maxWidth='xl' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
-                <QAList bgcolor='#0A5822' title={subtitleFuel || '燃料'} qaList={qaFuel} />
-                <QAList bgcolor='#13702F' title={subtitleTechnology || '技術'} qaList={qaTechnology} />
-                <QAList bgcolor='#1F8940' title={subtitlePowGen || '發電'} qaList={qaPowGen} />
-                <QAList bgcolor='#2DA351' title={subtitleApplication || '應用'} qaList={qaApplication} />
+                <QAList bgcolor='#0A5822' title={subtitleFuel} qaList={qaFuel} />
+                <QAList bgcolor='#13702F' title={subtitleTechnology} qaList={qaTechnology} />
+                <QAList bgcolor='#1F8940' title={subtitlePowGen} qaList={qaPowGen} />
+                <QAList bgcolor='#2DA351' title={subtitleApplication} qaList={qaApplication} />
             </Grid>
         </Grid>
     )

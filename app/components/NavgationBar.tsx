@@ -6,12 +6,17 @@ import LangEn from '@icons/lang_en.svg';
 import React from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import LabelImportantIcon from '@mui/icons-material/LabelImportant';
-import { AppContext } from '@context/index';
 import router from "next/router";
+import { INavgationBar } from "types";
 
-export default function NavgationBar() {
+export default function NavgationBar({ CNavgationBar }: {CNavgationBar: INavgationBar}) {
     const [drawerState, setDrawerState] = React.useState(false);
-    const { NavgationBar, lang, toggleLang } = React.useContext(AppContext)
+    const { lang, pages } = CNavgationBar;
+
+    const toggleLang = () => {
+        if (lang === 'zh') return router.push('/en');
+        router.push('/');
+    };
 
     const trigger = useScrollTrigger({
         disableHysteresis: false,
@@ -53,12 +58,12 @@ export default function NavgationBar() {
                         alignItems: 'center',
                     }}>
                         <Box flexGrow={0} onClick={() => router.push('/')} sx={{cursor: 'pointer'}}>
-                            {GamaLogo && <GamaLogo />}
+                            <GamaLogo />
                         </Box>
 
                         <Box mr={1}>
                             <Grid container alignItems='center' height='100%' sx={{ display: { xs: 'none', md: 'flex' } }}>
-                                {NavgationBar.pages.map((page) => (
+                                {pages.map((page) => (
                                     <Grid item key={page.name}>
                                         <Button variant='text' key={page.name} sx={{
                                                 borderRadius: 0,
@@ -84,7 +89,7 @@ export default function NavgationBar() {
                             <Grid container alignItems='center' spacing={1} height='100%' sx={{ display: { xs: 'flex', md: 'none' } }}>
                                 <Grid item>
                                     <IconButton onClick={toggleLang}>
-                                        {lang === 'zh' ? <LangZh /> : <LangEn /> }
+                                        {lang === 'zh' ? <LangEn /> : <LangZh /> }
                                     </IconButton>
                                 </Grid>
                                 <Grid item>
@@ -104,7 +109,7 @@ export default function NavgationBar() {
                 open={drawerState}
                 onClose={toggleDrawer}
             >
-                {NavgationBar.pages.map(page => (
+                {pages.map(page => (
                     <ListItem key={page.name} disablePadding>
                         <ListItemButton onClick={() => handleClick(page.pathName)}>
                             <ListItemIcon>

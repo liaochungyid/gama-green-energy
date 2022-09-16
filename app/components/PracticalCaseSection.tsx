@@ -1,8 +1,7 @@
 import React from 'react';
 import { Box, Grid, Typography } from "@mui/material";
-import { AppContext } from '@context/index';
-import { prefix } from '@utils/prefix';
 import YouTube from 'react-youtube';
+import { IPracticalCaseSection } from 'types';
 
 interface StyledHoverBoxType {title: string};
 
@@ -53,8 +52,7 @@ const StyledHoverBox = ({title}: StyledHoverBoxType) => (
     </Box>
 );
 
-export default function PracticalCaseSection() {
-    const { PracticalCaseSection } = React.useContext(AppContext);
+export default function PracticalCaseSection({ CPracticalCaseSection }: {CPracticalCaseSection: IPracticalCaseSection}) {
     const {
         title,
         subtitleFirst,
@@ -64,13 +62,13 @@ export default function PracticalCaseSection() {
         subtitleThird,
         contentThird,
         picGridSubtitle
-    } = PracticalCaseSection;
+    } = CPracticalCaseSection;
 
     return (
         <Grid id='showcase' container justifyContent='center' alignItems='center' overflow='hidden' >
             <Grid item xs={12} bgcolor='#050607' mb={10} data-aos="fade-up">
                 <Grid container justifyContent='center' mx='auto' maxWidth='xl' sx={{
-                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/service-04.jpg)`,
+                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/service-04.jpg)`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
@@ -80,10 +78,10 @@ export default function PracticalCaseSection() {
                         flexDirection: 'column',
                         alignItems: 'center'
                     }}>
-                        <Typography variant='h2' color='info.main' mb={2.5}>{title || '案例實績'}</Typography>
-                        <Typography variant='h5' color='common.white' mb={2.5}>{subtitleFirst || '實證示範廠'}</Typography>
+                        <Typography variant='h2' color='info.main' mb={2.5}>{title}</Typography>
+                        <Typography variant='h5' color='common.white' mb={2.5}>{subtitleFirst}</Typography>
                         <Typography variant='subtitle2' color='common.white'>
-                        {contentFirst || '曾於花蓮壽豐鄉有機農場設立實驗基地解決農業廢棄物去化問題。原料透過適當分離、乾燥等前處理程序後，進行氣化產熱、產電等轉換，此實驗證明對農業廢棄物能做適當能資源轉換及去化處理。'}
+                        {contentFirst}
                         </Typography>
                     </Grid>
                 </Grid>
@@ -102,17 +100,17 @@ export default function PracticalCaseSection() {
             <Grid item xs={12} mb={22.5} py={10} px={{xs: 1, sm: 2, md: 4, lg: 8}} bgcolor='#F3F3F3' data-aos="fade-up">
                 <Grid container maxWidth='xl' mx='auto' alignItems='center'>
                     <Grid item xs={6} display={{xs: 'none', sm: 'block'}}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
                     </Grid>
                     <Grid item xs={12} sm={5} ml='auto'>
-                        <Typography variant='h5' color='secondary.dark' mb={2.5}>{subtitleSecond || '台灣第一座合法標準廠'}</Typography>
+                        <Typography variant='h5' color='secondary.dark' mb={2.5}>{subtitleSecond}</Typography>
                         <Box display={{xs: 'block', sm: 'none'}} pb={2}>
-                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
+                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/gama_3d.jpg`} alt="佳瑪外觀3D圖" srcSet="" />
                         </Box>
                         <Typography variant='subtitle2' color='common.black'>
-                        {contentSecond[0] || '佳瑪環能初期經營目標為完成桃園市大園區大觀路256號第一期400kW發電量之設備建置，未來將以1,200kW 為目標並以桃園首座微型能資源處理中心，協助解決生質廢棄物及電力不足問題。'}
+                        {contentSecond[0]}
                         <br /><br />
-                        {contentSecond[1] || '廢棄物處理流程主要以廢塑膠、廢木材等廢棄物為原料，透過破碎篩分系統完成前處理，經過適當物料配比後進入氣化爐產生合成氣，供給微渦輪機燃燒可燃氣發電，發電後之餘熱尚可經過溴冷機產生冷氣，供應全廠使用。'}
+                        {contentSecond[1]}
                         </Typography>
                     </Grid>
 
@@ -122,16 +120,16 @@ export default function PracticalCaseSection() {
             <Grid item xs={12} mb={{xs: 6, sm: 12, md: 18, lg: 22.5}} data-aos="fade-up">
                 <Grid container maxWidth='xl' mx='auto' px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                     <Grid item xs={12} pb={5}>
-                        <Typography variant='h2' color='secondary.main' mb={2.5}>{subtitleThird || '案場現況'}</Typography>
-                        <Typography variant='h5' color='common.black'>{contentThird || '佳瑪環能氣化廠設備實績'}</Typography>
+                        <Typography variant='h2' color='secondary.main' mb={2.5}>{subtitleThird}</Typography>
+                        <Typography variant='h5' color='common.black'>{contentThird}</Typography>
                     </Grid>
                     <Grid item xs={6} md={4} p={1.5}>
                         <Box position='relative'>
-                            <img src={`${prefix}/images/device-3.jpg`} width='100%' alt={picGridSubtitle[0]} />
+                            <img src={`/images/device-3.jpg`} width='100%' alt={picGridSubtitle[0]} />
                             <StyledHoverBox title={picGridSubtitle[0]} />
                         </Box>
                         <Box position='relative' py={3} display={{xs: 'block', md: 'none'}}>
-                            <img src={`${prefix}/images/device-5.jpg`} width='100%' alt={picGridSubtitle[4]} />
+                            <img src={`/images/device-5.jpg`} width='100%' alt={picGridSubtitle[4]} />
                             <StyledHoverBox title={picGridSubtitle[4]} />
                         </Box>
                     </Grid>
@@ -139,25 +137,25 @@ export default function PracticalCaseSection() {
                         <Grid container>
                             <Grid item xs={12} md={6} p={1.5}>
                                 <Box position='relative'>
-                                    <img src={`${prefix}/images/device-1.jpg`} width='100%' alt={picGridSubtitle[1]} />
+                                    <img src={`/images/device-1.jpg`} width='100%' alt={picGridSubtitle[1]} />
                                     <StyledHoverBox title={picGridSubtitle[1]} />
                                 </Box>
                             </Grid>
                             <Grid item xs={12} md={6} p={1.5}>
                                 <Box position='relative'>
-                                    <img src={`${prefix}/images/device-4.jpg`} width='100%' alt={picGridSubtitle[2]} />
+                                    <img src={`/images/device-4.jpg`} width='100%' alt={picGridSubtitle[2]} />
                                     <StyledHoverBox title={picGridSubtitle[2]} />
                                 </Box>
                             </Grid>
                             <Grid item xs={12} md={6} p={1.5}>
                                 <Box position='relative'>
-                                    <img src={`${prefix}/images/device-2.jpg`} width='100%' alt={picGridSubtitle[3]} />
+                                    <img src={`/images/device-2.jpg`} width='100%' alt={picGridSubtitle[3]} />
                                     <StyledHoverBox title={picGridSubtitle[3]} />
                                 </Box>
                             </Grid>
                             <Grid item md={6} p={1.5} display={{xs: 'none', md: 'block'}}>
                                 <Box position='relative'>
-                                    <img src={`${prefix}/images/device-5.jpg`} width='100%' alt={picGridSubtitle[4]} />
+                                    <img src={`/images/device-5.jpg`} width='100%' alt={picGridSubtitle[4]} />
                                     <StyledHoverBox title={picGridSubtitle[4]} />
                                 </Box>
                             </Grid>

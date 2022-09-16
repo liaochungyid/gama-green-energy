@@ -1,9 +1,8 @@
 import React from 'react';
 import { Box, Grid, Typography } from "@mui/material";
-import { AppContext } from '@context/index';
-import { prefix } from '@utils/prefix';
 import theme from 'theme';
 import YouTube from 'react-youtube';
+import { ISolutionSection } from 'types';
 
 interface AdvantageCardProps {title: string; description: string}
 
@@ -32,8 +31,7 @@ const AdvantageCard = ({title, description}: AdvantageCardProps) => (
     </Grid>
 );
 
-export default function SolutionSection() {
-    const { SolutionSection } = React.useContext(AppContext);
+export default function SolutionSection({ CSolutionSection }: {CSolutionSection: ISolutionSection}) {
     const {
         title,
         titleDes,
@@ -43,26 +41,26 @@ export default function SolutionSection() {
         contentSecond,
         subtitleThird,
         contentThird
-    } = SolutionSection;
+    } = CSolutionSection;
 
     return (
         <Grid id='solution' container justifyContent='center' alignItems='center' overflow='hidden'>
             <Grid item width='100%' bgcolor='#050607' data-aos="fade-up" mb={7.5}>
                 <Grid container justifyContent='center'>
                     <Grid item maxWidth='xl' width='100%' my='auto' sx={{
-                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(${prefix}/images/solution_bg.jpg)`,
+                        backgroundImage: `linear-gradient(0deg, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url(/images/solution_bg.jpg)`,
                         backgroundRepeat: 'no-repeat',
                         backgroundPosition: 'center',
                         backgroundSize: 'cover',
                     }}>
                         <Grid container py={{xs: 4, sm: 6, md: 8, lg: 10}}  px={{xs: 1, sm: 2, md: 4, lg: 8}}>
                             <Grid item display={{xs: 'none', sm: 'block'}} sm={5} mx='auto'>
-                                <img src={`${prefix}/images/solution_title.jpg`} width='100%' alt="解決方案" />
+                                <img src={`/images/solution_title.jpg`} width='100%' alt="解決方案" />
                             </Grid>
                             <Grid item xs={10} sm={5} mx='auto' display='flex' flexDirection='column' sx={{justifyContent: 'center'}}>
-                                <Typography variant='h2' color='info.main' mb={2.5}>{title || '解決方案'}</Typography>
+                                <Typography variant='h2' color='info.main' mb={2.5}>{title}</Typography>
                                 <Typography variant='h5' color='common.white'>
-                                    {titleDes || '首創微型高溫氣化熱裂解技術可有效解決垃圾焚化及能源不足等問題'}
+                                    {titleDes}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -74,7 +72,7 @@ export default function SolutionSection() {
                 <Grid container>
                     <Grid item xs={12} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Typography variant='h5' color='secondary.main' mb={5}>
-                            {subtitleFirst || '佳瑪環能的氣化技術具有下列的優點'}
+                            {subtitleFirst}
                         </Typography>
                     </Grid>
                     <Grid item xs={12} position='relative' data-aos="fade-up">
@@ -85,7 +83,7 @@ export default function SolutionSection() {
                             bottom: 0,
                             left: 0,
                             zIndex: -1,
-                            backgroundImage: `url(${prefix}/images/gama_watermark.svg)`,
+                            backgroundImage: `url(/images/gama_watermark.svg)`,
                             backgroundRepeat: 'no-repeat',
                             backgroundPositionX: 'left',
                             backgroundSize: 'contain',
@@ -98,10 +96,10 @@ export default function SolutionSection() {
                         <Grid container alignItems='center' flexDirection={{xs: 'column', sm: 'row'}}>
                             <Grid item xs={12}>
                                 <Typography variant='h5' color='secondary.main' mb={2.5}>
-                                    {subtitleSecond[0] || '以分散式能資源中心深化運用'}<br />
-                                    {subtitleSecond[1] || '循環經濟模式遍地開花'}
+                                    {subtitleSecond[0]}<br />
+                                    {subtitleSecond[1]}
                                 </Typography>
-                                <Typography variant='subtitle2' color='common.black'>{contentSecond[0] || '垃圾處理一直是各城市的大議題，目前台灣的焚化爐大多採用三、四十年前的焚化技術，每日處理約一千噸混雜垃圾，對於環境的衝擊性相對大。加上一般焚化廠使用年限為二十年，隨著台灣多數垃圾焚化廠使用年限屆滿，須面對廢棄物的去化。'}</Typography>
+                                <Typography variant='subtitle2' color='common.black'>{contentSecond[0]}</Typography>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -109,13 +107,13 @@ export default function SolutionSection() {
                     <Grid item xs={12} mb={{xs: 5, sm: 6, md: 8, lg: 10}} px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
                         <Grid container alignItems='center' flexDirection={{xs: 'column-reverse', sm: 'row'}}>
                             <Grid item xs={12} sm={5} py={{xs: 2, sm: 0}} px={{xs: 6, sm: 2, md: 0}}>
-                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/service-03.jpg`} alt="廢棄物處理流程" srcSet="" />
                             </Grid>
                             <Grid item xs={12} sm={7} md={6} ml='auto'>
                                 <Typography variant='subtitle2' color='common.black'>
-                                {contentSecond[1] || '綜觀台灣所面臨的廢棄物處理狀況，佳瑪環能所設計的廢棄物資源轉換系統，不僅可高效再利用有機廢棄物，也可將廢熱回收用來供熱CHP或製冷CCHP，能源轉換效率相對高。而能量轉換過程中的產生的碳黑、灰份、工業醋酸(木醋液)等，亦可提供工(農)業再利用，達成廢棄物皆資源化的目標。'}
+                                {contentSecond[1]}
                                 <br /><br />
-                                {contentSecond[2] || '佳瑪環能擁有廢棄物能資源系統整合經驗及固定污染源處理執照 ; 在建置區域型微型發電廠方面採用特殊氣化技術將廢棄物轉換成RDF-7廢棄物衍生燃料供給高效率的微渦輪機發電，可24小時運轉且容量因素可達80-90，並將廢熱回收用來供暖或製冷，有別於其他使用固態廢棄物衍生燃料(Solid recovered fuel, SRF) 的電廠，則須先消耗能量將廢棄物製成SRF。'}
+                                {contentSecond[2]}
                                 </Typography>
                             </Grid>
                         </Grid>
@@ -137,14 +135,14 @@ export default function SolutionSection() {
                                 }
                             }}>
                                 <Box display={{xs: 'block', sm: 'none'}} px={3}>
-                                    <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-02.jpg`} alt="去中心化" srcSet="" />
+                                    <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/service-02.jpg`} alt="去中心化" srcSet="" />
                                 </Box>
                                 <Typography variant='subtitle2' color='common.white'>
-                                {contentSecond[3] || '相較於以火力、核能發電場為主的集中式電網，佳瑪環能的優勢在於設置微型分散式能資源轉換中心，可以協助成為台灣電力穩定備載支撐，還能就近處理生質廢棄物的去化，並減少長途運送的碳排放。'}
+                                {contentSecond[3]}
                                 </Typography>
                             </Grid>
                             <Grid item xs={6} display={{xs: 'none', sm: 'block'}} ml='auto'>
-                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/service-02.jpg`} alt="去中心化" srcSet="" />
+                                <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/service-02.jpg`} alt="去中心化" srcSet="" />
                             </Grid>
                         </Grid>
                     </Grid>
@@ -170,18 +168,18 @@ export default function SolutionSection() {
             }}>
                 <Grid container maxWidth='xl' px={{xs: 1, sm: 2, md: 4, lg: 8}} width='100%' mx='auto'>
                     <Grid item xs={12} sm={6}>
-                        <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleThird || 'Aurelia® A400'}</Typography>
+                        <Typography variant='h5' color='secondary.main' mb={2.5}>{subtitleThird}</Typography>
                         <Box display={{xs: 'block', sm: 'none'}} px={4}>
-                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
+                            <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
                         </Box>
                         <Typography variant='subtitle2' color='common.black'>
-                        {contentThird[0] || '因應現行的產業電力需求增加、供電備轉容量吃緊和故障引起的斷電事故，佳瑪環能引進與代理Aurelia® A400，可減少興建輸配電線所需之龐大投資與阻力，是最符合市場需求之動力發電系統。'}
+                        {contentThird[0]}
                         <br /><br />
-                        {contentThird[1] || '這是一款新型的400 kW微型燃氣渦輪發電機，具40.2%的能量轉換效率，比市面上的其他微渦輪機效率高出約20%，是目前最高效率的微渦輪機。能夠使用包括氫氣在內的多種可再生燃料和非標準燃料，運轉時污染極低、廢熱可充分再利用及體積小運轉維修容易。為小型燃氣渦輪機及柴油發電機組外，為最具發展潛力之緊急電源及小型分散型電源。'}
+                        {contentThird[1]}
                         </Typography>
                     </Grid>
                     <Grid item xs={5} display={{xs: 'none', sm: 'block'}} ml='auto' zIndex={1}>
-                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`${prefix}/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
+                        <img width='100%' height='100%' style={{objectFit: 'contain'}} src={`/images/aurelia_device_A400.png`} alt="Aurelia A400" srcSet="" />
                     </Grid>
                 </Grid>
                     

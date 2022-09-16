@@ -1,9 +1,8 @@
-import React from "react";
+import IPageProps from "types";
 
-export const AppState = {
-    lang: 'zh',
-    toggleLang: () => {},
+const context: IPageProps = {
     NavgationBar: {
+        lang: 'zh',
         pages: [{
             name: '關於我們',
             pathName: '#aboutUs'
@@ -17,12 +16,6 @@ export const AppState = {
             name: '我們的優勢',
             pathName: '#strength'
         }, {
-        //     name: '區域服務',
-        //     pathName: '#localeService'
-        // }, {
-        //     name: '媒體新聞',
-        //     pathName: '#social'
-        // }, {
             name: '相關問答',
             pathName: '#faq'
         }, {
@@ -180,4 +173,4 @@ export const AppState = {
     }
 };
 
-export const AppContext = React.createContext(AppState);
+export default context;

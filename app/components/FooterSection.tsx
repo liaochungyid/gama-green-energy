@@ -7,8 +7,7 @@ import IconFax from '@icons/icon-fax.svg';
 import IconMapLocation from '@icons/icon-map_location_dot.svg'
 import FactoryIcon from '@mui/icons-material/Factory';
 import IconArrowRight from '@icons/icons-arrow-left.svg';
-import { AppContext } from '@context/index';
-import { prefix } from '@utils/prefix';
+import { IFooterSection } from 'types';
 
 interface ICta {cta: string, email: string};
 
@@ -20,13 +19,12 @@ const openInNewTab = (url: string) => {
 const CtaButton = ({ cta, email }: ICta) => (
     <Button variant='contained' color='success' 
         sx={{fontSize: '24px', padding: '10px 24px', marginX: 'auto', marginTop: 6.875, marginBottom: 7.5}} 
-        onClick={() => openInNewTab(`mailto:${email || 'service@gama-green.tw'}?subject=Hello&body=what you wanna ask us`)} 
+        onClick={() => openInNewTab(`mailto:${email}?subject=Hello&body=what you wanna ask us`)} 
         endIcon={<IconArrowRight />}
-    >{cta || '使用電子郵件與我們聯繫'}</Button>
+    >{cta}</Button>
 );
 
-export default function FooterSection() {
-    const { FooterSection } = React.useContext(AppContext);
+export default function FooterSection({ CFooterSection }: {CFooterSection: IFooterSection}) {
     const {
         title,
         office,
@@ -36,42 +34,42 @@ export default function FooterSection() {
         workHour,
         email,
         cta
-    } = FooterSection;
+    } = CFooterSection;
     return (
         <React.Fragment>
             <Grid id='contactUs' container justifyContent='center' alignItems='center' bgcolor='#07451A'>
                 <Grid item maxWidth='xl' xs={12} sx={{
-                    backgroundImage: `url(${prefix}/images/footer-map.png)`,
+                    backgroundImage: `url(/images/footer-map.png)`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'center',
                     backgroundSize: 'cover',
                 }}>
                     <Grid container maxWidth='lg' mx='auto' py={15}>
                         <Grid item xs={12} sm={6} padding={7.5} sx={{background: 'rgba(255, 255, 255, 0.3)', backdropFilter: 'blur(7px)'}}>
-                            <Typography variant='h2' color='common.white' mb={3.75}>{title || '聯繫我們'}</Typography>
+                            <Typography variant='h2' color='common.white' mb={3.75}>{title}</Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <IconMapLocation />
-                                <Typography variant='inherit' ml={3} component='span'>{office || '桃園市中壢區青峰路一段35號4樓'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{office}</Typography>
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <FactoryIcon />
-                                <Typography variant='inherit' ml={3} component='span'>{plant || '桃園市大園區大觀路256號1樓'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{plant}</Typography>
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <PhoneIcon />
-                                <Typography variant='inherit' ml={3} component='span'>{phone || '(03) 381-9840'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{phone}</Typography>
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <IconFax />
-                                <Typography variant='inherit' ml={3} component='span'>{fax || '(03) 280-4423'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{fax}</Typography>
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}} mb={2}>
                                 <WatchLaterIcon />
-                                <Typography variant='inherit' ml={3} component='span'>{workHour || '09:00 - 18:00'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{workHour}</Typography>
                             </Typography>
                             <Typography variant='subtitle1' color='common.white' display='flex' sx={{alignItems: 'center'}}>
                                 <EmailIcon />
-                                <Typography variant='inherit' ml={3} component='span'>{email || 'service@gama-green.com.tw'}</Typography>
+                                <Typography variant='inherit' ml={3} component='span'>{email}</Typography>
                             </Typography>
                         </Grid>
                         <Grid item display={{sm: 'none'}} mx='auto'>

@@ -1,7 +1,7 @@
 import { GlobalStyles } from '@mui/material';
 import theme from 'theme';
 
- const GlobalStyle = 
+const GlobalStyle =
     <GlobalStyles styles={{
         '.MuiTypography-root.MuiTypography-h1': {
             [theme.breakpoints.down('xl')]: {

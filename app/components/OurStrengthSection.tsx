@@ -3,8 +3,7 @@ import IconIdea from '@icons/icon-idea.svg'
 import IconIdcard from '@icons/icon-id_card.svg'
 import IconFileText from '@icons/icon-file_text_filled.svg'
 import { Card, CardContent, CardMedia, Grid, Typography } from "@mui/material";
-import { AppContext } from '@context/index';
-import { prefix } from '@utils/prefix';
+import { IOurStrengthSection } from 'types';
 
 interface CardItemProps {imgpath: string; icon: JSX.Element; title: string; titleDes: string};
 
@@ -21,37 +20,31 @@ const CardItem = ({imgpath, icon, title, titleDes}: CardItemProps) => (
     </Grid>
 );
 
-export default function OurStrengthSection() {
-    const { OurStrengthSection } = React.useContext(AppContext);
+export default function OurStrengthSection({ COurStrengthSection }: {COurStrengthSection: IOurStrengthSection}) {
     const {
         title,
         cards
-    } = OurStrengthSection;
+    } = COurStrengthSection;
 
-    const cardsImage = [{
-        imgpath: `${prefix}/images/advantage-01.jpg`,
+    const ci = [{
+        imgpath: `/images/advantage-01.jpg`,
         icon: <IconIdea />
     }, {
-        imgpath: `${prefix}/images/advantage-02.jpg`,
+        imgpath: `/images/advantage-02.jpg`,
         icon: <IconIdcard />
     }, {
-        imgpath: `${prefix}/images/advantage-03.jpg`,
+        imgpath: `/images/advantage-03.jpg`,
         icon: <IconFileText />
     }];
-
-    const cardList = cards.map((c, i) => ({
-        ...c,
-        ...cardsImage[i]
-    }));
 
     return (
         <Grid id='strength' container justifyContent='center' alignItems='center' mb={{xs: 6, sm: 12, md: 18, lg: 22.5}}>
             <Grid item maxWidth='xl' width='100%' px={{xs: 1, sm: 2, md: 4, lg: 8}} data-aos="fade-up">
-                <Typography variant='h2' color='secondary.main' mb={7.5}>{title || '我們的優勢'}</Typography>
+                <Typography variant='h2' color='secondary.main' mb={7.5}>{title}</Typography>
 
                 <Grid container spacing={2.5} mb={7.5}>
-                    {cardList.map(c => (
-                        <CardItem key={c.title} imgpath={c.imgpath} icon={c.icon}
+                    {cards.map((c, i) => (
+                        <CardItem key={c.title} imgpath={ci[i].imgpath} icon={ci[i].icon}
                         title={c.title} titleDes={c.titleDes} />
                     ))}
                 </Grid>

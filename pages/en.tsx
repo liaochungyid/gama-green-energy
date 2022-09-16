@@ -1,4 +1,4 @@
-import Context from '@context/zh';
+import Context from '@context/en';
 import AboutUsSection from '@components/AboutUsSection'
 import CostEffectivenessSection from '@components/CostEffectivenessSection'
 import FaqSection from '@components/FaqSection'
@@ -11,6 +11,7 @@ import PracticalCaseSection from '@components/PracticalCaseSection'
 import SolutionSection from '@components/SolutionSection'
 import type { NextPage } from 'next'
 import React from 'react'
+import GlobalStyle from 'theme/GlobalStyle';
 import AOS from 'aos';
 import IPageProps from 'types';
 import Head from 'next/head';
@@ -42,21 +43,21 @@ const Home: NextPage<IPageProps> = ({
   return (
     <>
       <Head>
-        <title>佳瑪環能科技 | Gama Green Engergy</title>
-        <meta name="description" content="佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(MTG)轉換成電力提供穩定的再生能源" />
+        <title>Gama Green Engergy | Taiwan</title>
+        <meta name="description" content="GAMA uses special gasification technology to convert organic waste resources into syngas (RDF-7) with high energy conversion efficiency in Refuse derived fuel, which is then converted into electricity through micro-turbine generators (MTG) to provide stable regeneration energy." />
         <meta name="author" content="FE Lyle, DESIGN Chloe" />
-        <meta property="og:url" content="index.html" />
-        <meta property="og:site_name" content="佳瑪環能科技 | Gama Green Engergy" />
-        <meta property="og:title" content="佳瑪環能科技 | Gama Green Engergy" />
-        <meta property="og:description" content="佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(MTG)轉換成電力提供穩定的再生能源" />
+        <meta property="og:url" content="en.html" />
+        <meta property="og:site_name" content="Gama Green Engergy | Taiwan" />
+        <meta property="og:title" content="Gama Green Engergy | Taiwan" />
+        <meta property="og:description" content="GAMA uses special gasification technology to convert organic waste resources into syngas (RDF-7) with high energy conversion efficiency in Refuse derived fuel, which is then converted into electricity through micro-turbine generators (MTG) to provide stable regeneration energy." />
         <meta property="og:type" content="website" />
         <meta property="og:image" content="/images/leaf.jpg" />
-        <meta property="og:locale" content="zh_tw" />
+        <meta property="og:locale" content="en_US" />
         <meta name="twitter:card" content="summary" />
-        <meta name="twitter:title" content="佳瑪環能科技 | Gama Green Engergy" />
-        <meta name="twitter:description" content="佳瑪環能運用特殊氣化(Gasification)技術，將有機廢棄資源轉化為廢棄物衍生燃料(RDF)中具有較高能源轉換效率的RDF-7合成氣(syngas)，再透過微型渦輪發電機(MTG)轉換成電力提供穩定的再生能源" />
+        <meta name="twitter:title" content="Gama Green Engergy | Taiwan" />
+        <meta name="twitter:description" content="GAMA uses special gasification technology to convert organic waste resources into syngas (RDF-7) with high energy conversion efficiency in Refuse derived fuel, which is then converted into electricity through micro-turbine generators (MTG) to provide stable regeneration energy." />
         <meta name="twitter:image" content="/images/leaf.jpg" />
-        <meta name="twitter:image:alt" content="佳瑪環能科技 | Gama Green Engergy" />
+        <meta name="twitter:image:alt" content="Gama Green Engergy | Taiwan" />
       </Head>
       <NavgationBar CNavgationBar={CNavgationBar} />
       <HeroSection CHeroSection={CHeroSection} />
