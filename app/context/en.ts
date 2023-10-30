@@ -163,8 +163,7 @@ const context: IPageProps = {
     },
     FooterSection: {
         title: "Contact Us",
-        office: "4F., No. 35, Section 1, Qingfeng Rd, Zhongli District, Taoyuan City, 320",
-        plant: "No. 256, Daguan Rd, Dayuan District, Taoyuan City, 337, Taiwan, R.O.C.",
+        office: "No. 256, Daguan Rd, Dayuan District, Taoyuan City, 337, Taiwan, R.O.C.",
         phone: "+886-3-381-9840",
         fax: "+886-3-280-4423",
         workHour: "09:00 - 18:00",

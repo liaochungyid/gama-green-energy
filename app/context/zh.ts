@@ -163,8 +163,7 @@ const context: IPageProps = {
     },
     FooterSection: {
         title: '聯繫我們',
-        office: '桃園市中壢區青峰路一段35號4樓',
-        plant: '桃園市大園區大觀路256號1樓',
+        office: '桃園市大園區大觀路256號1樓',
         phone: '+886-3-381-9840',
         fax: '+886-3-280-4423',
         workHour: '09:00 - 18:00',

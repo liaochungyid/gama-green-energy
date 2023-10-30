@@ -95,7 +95,6 @@ export interface IPartnerSection {
 export interface IFooterSection {
     title: string;
     office: string;
-    plant: string;
     phone: string;
     fax: string;
     workHour: string;
